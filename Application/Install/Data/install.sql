@@ -46,7 +46,7 @@ CREATE TABLE `ct_addon_sync_login` (
 
 DROP TABLE IF EXISTS `ct_admin_access`;
 
-CREATE TABLE `ct_admin_account` (
+CREATE TABLE `ct_admin_access` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员ID',
   `uid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
   `group` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '管理员用户组',
