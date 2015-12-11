@@ -65,7 +65,7 @@ class NavModel extends Model {
         array('name', '/^[\w]+$/', '名称必须是纯英文，不包含下划线、空格及其他字符', self::MUST_VALIDATE, 'regex', self::MODEL_BOTH),
         array('title', 'require', '导航标题不能为空', self::MUST_VALIDATE, 'regex', self::MODEL_BOTH),
         array('type', 'require', '导航类型不能为空', self::MUST_VALIDATE, 'regex', self::MODEL_BOTH),
-        array('url', '1,255', '链接长度为1-25个字符', self::EXISTS_VALIDATE, 'length',self::MODEL_BOTH),
+        array('url', '0,255', '链接长度为0-25个字符', self::EXISTS_VALIDATE, 'length',self::MODEL_BOTH),
     );
 
     /**

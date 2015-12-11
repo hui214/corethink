@@ -47,7 +47,7 @@
                         <ul class="nav-tabs nav">
                             <volist name="message_type" id="type">
                                 <li class="<php>if($current_type == $key) echo 'active';</php>">
-                                    <a class="<php>if($new_message_type[$key]){echo 'red-dot';}</php>" href="{:U('', array('type' => $key))}">{$type}</a>
+                                    <a href="{:U('', array('type' => $key))}">{$type} <span class="badge badge-danger">{$new_message_type[$key]}</span></a>
                                 </li>
                             </volist>
                         </ul>

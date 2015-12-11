@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__/admin.css?v={:C('STATIC_VERSION')}">
     <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__/theme/{:C('ADMIN_THEME')}.css">
     <block name="style"></block>
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <!-- 如果配置里CDN静态资源列表则使用CDN否则使用静态资源 -->
     <?php if(C('CDN_RESOURCE_LIST')): ?>
         {:C('CDN_RESOURCE_LIST')}

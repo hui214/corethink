@@ -114,7 +114,7 @@ class UploadController extends AdminController {
      * @author jry <598821125@qq.com>
      */
     public function upload() {
-        exit(D('Upload')->upload());
+        exit(json_encode(D('Upload')->upload()));
     }
 
     /**

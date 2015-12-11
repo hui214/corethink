@@ -6,25 +6,25 @@
 // +----------------------------------------------------------------------
 // | Author: jry <598821125@qq.com> <http://www.corethink.cn>
 // +----------------------------------------------------------------------
-namespace Addons\XiaMiFM;
+namespace Addons\BaiduShare;
 use Common\Controller\Addon;
 /**
- * 虾米音乐电台
- * @author Moobusy
+ * 百度分享插件
+ * @author jry
  */
-class XiaMiFMAddon extends Addon{
+class BaiduShareAddon extends Addon {
     /**
      * 插件信息
      * @author jry <598821125@qq.com>
      */
     public $info = array(
-        'name'        => 'XiaMiFM',
-        'title'       => '虾米音乐电台',
-        'description' => '虾米音乐电台',
+        'name'        => 'BaiduShare',
+        'title'       => '百度分享',
+        'description' => '用户将网站内容分享到第三方网站',
         'status'      => 1,
-        'author'      => 'Moobusy',
+        'author'      => 'CoreThink',
         'version'     => '1.1.0',
-        'beta'        => '3.0',
+        'beta'        => 'false',
     );
 
     /**
@@ -32,7 +32,7 @@ class XiaMiFMAddon extends Addon{
      * @author jry <598821125@qq.com>
      */
     public $hooks = array(
-        '0' => 'AdminIndex',
+        '0' => 'BaiduShare',
     );
 
     /**
@@ -52,13 +52,12 @@ class XiaMiFMAddon extends Addon{
     }
 
     /**
-     * 实现的AdminIndex钩子方法
+     * 实现的BaiduShare钩子方法
      * @author jry <598821125@qq.com>
      */
-    public function AdminIndex($param){
-        $config = $this->getConfig();
-        if ($config['onuse']==1) {
-            $this->display('index');
-        }
+    public function BaiduShare($param){
+        $this->assign('info', $param);
+        $this->assign('addons_config', $this->getConfig());
+        $this->display('share');
     }
 }

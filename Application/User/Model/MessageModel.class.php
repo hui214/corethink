@@ -35,8 +35,8 @@ class MessageModel extends Model {
      */
     protected $_auto = array(
         array('is_read', '0', self::MODEL_INSERT),
-        array('ctime', NOW_TIME, self::MODEL_INSERT),
-        array('utime', NOW_TIME, self::MODEL_BOTH),
+        array('create_time', NOW_TIME, self::MODEL_INSERT),
+        array('update_time', NOW_TIME, self::MODEL_BOTH),
         array('sort', '0', self::MODEL_INSERT),
         array('status', '1', self::MODEL_INSERT),
     );
@@ -48,7 +48,6 @@ class MessageModel extends Model {
     public function message_type($id) {
         $list[0] = '系统消息';
         $list[1] = '评论消息';
-        $list[2] = '私信消息';
         return $id ? $list[$id] : $list;
     }
 

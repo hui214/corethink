@@ -1,38 +1,25 @@
-/* 全局 */
-body {
-    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
- a {
-    color: #03AE87;
-}
-
-/* 按钮、表格、分页*/
+/* cui reset */
 .btn,
+.alert,
+.panel,
 .label,
-.table thead th,
-.pagination li.active a {
-    border-radius: 0px;
-    background: #03AE87;
-    border-color: #03AE87;
-    color: #fff;
+.navbar,
+.navside,
+.thumbnail,
+.form-control,
+.navbar-toggle,
+.nav-tabs>li>a,
+.dropdown-menu,
+.panel-heading,
+.pagination>li>a,
+.list-group-item,
+.input-group-addon,
+.panel-group .panel {
+    border-radius: 0 !important;
+    box-shadow: none;
 }
-
-/* 分页 */
-.pagination li a {
-    color: #03AE87;
-    border-radius: 0px;
-}
-
-
-/* Builder */
-.builder .builder-tabs .nav>li>a {
-    padding: 8px 25px;
-    margin-right: 0;
-}
-.builder .builder-tabs .nav>li>a:hover,
-.builder .builder-tabs .nav>li.active>a {
-    border-top: 3px solid #03AE87;
-    padding-top: 6px;
+.btn-pill {
+    border-radius: 1000em  !important;
 }
 
 
@@ -68,7 +55,7 @@ body {
 }
 @media (min-width: 768px) {
     .main-nav .nav>li>a {
-        padding: 15px 15px;
+        padding: 15px 15px 16px 15px;
     }
 }
 @media (max-width: 768px) {
@@ -86,33 +73,18 @@ body {
 
 
 /* 左侧导航 */
-#sidebar {
-    padding-top: 15px;
+.navside .navside-nav > .active > a {
+    background-color: #fff;
 }
-#sidebar,
-.navside {
-    border-color: #fff;
-    border-right-color: #eee;
-    background-color: #fff !important;
+
+
+/* Builder */
+.builder .builder-tabs .nav>li>a {
+    padding: 8px 25px;
+    margin-right: 0;
 }
-.navside .navside-first {
-    padding-left: 10px;
-}
-.navside .navside-nav>li>a {
-    color: #555;
-}
-.navside .navside-nav>li>a:hover {
-    color: #555;
-    background-color: #f5f5f5;
-    text-decoration: none;
-}
-.navside .navside-nav.navside-first>li>a {
-    border-color: #fff;
-    border-left: 3px solid #03AE87;
-}
-.navside .navside-nav > .active > a,
-.navside .navside-nav > .active > a:focus,
-.navside .navside-nav > .active > a:hover {
-    color: #555;
-    background-color: #f5f5f5;
+.builder .builder-tabs .nav>li>a:hover,
+.builder .builder-tabs .nav>li.active>a {
+    border-top: 3px solid #03AE87;
+    padding-top: 6px;
 }

@@ -1,17 +1,7 @@
 <extend name="./Application/Home/View/Public/layout.html"/>
 
 <block name="style">
-    <link href="__CSS__/naver.css" rel="stylesheet">
     <style type="text/css">
-        body {
-            background: #fff;
-        }
-        @media (max-width: 768px) {
-            .col-xs-12 {
-                padding: 0 15px !important;
-            }
-        }
-
         /* 产品 */
         @media (min-width: 768px) {
             #product-menu .title {
@@ -109,6 +99,15 @@
                     </a>
                 </div>
             </article:slider_list>
+            <!-- 如果没有幻灯片 -->
+            <?php if(!$slider): ?>
+                <div class="item active">
+                    <a href="http://www.corethink.cn" target="_blank">
+                        <img class="slider-img" src="__HOME_IMG__/index/banner.jpg">
+                    </a>
+                </div>
+            <?php endif; ?>
+            <!-- 如果没有幻灯片 -->
         </div>
         <a class="left carousel-control hidden-xs" href="#my-slider" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
         <a class="right carousel-control hidden-xs" href="#my-slider" data-slide="next"><span class="fa fa-chevron-right"></span></a>
@@ -117,34 +116,12 @@
 
 <block name="main">
     <div class="container">
-        <!-- 产品 -->
-        <div class="row">
-            <div class="col-xs-12 col-sm-12">
-                <h3>产品 <small>／Products</small></h3>
-                <div class="contain">
-                    <nav id="product-menu" class="naver">
-                        <ul>
-                            <article:category_list name="pd" pid="1" limit="6">
-                                <li>
-                                    <a href="{:U('Article/Home/Article/index', array('cid' => $pd['id']))}">
-                                        <span class="icon"></span>
-                                        <i class="fa {$pd.icon}"></i>
-                                        <span class="title">{$pd.title}</span>
-                                    </a>
-                                </li>
-                            </article:category_list>
-                        </ul>
-                    </nav>
-               </div>
-            </div>
-        </div>
-
         <!-- 资讯 -->
         <div class="row">
             <div class="col-xs-12 col-sm-6 news">
                 <h3>新闻资讯 <small>／News</small></h3>
                 <ul class="list-unstyled">
-                    <article:article_list name="vo" cid="9" limit="8">
+                    <article:article_list name="vo" cid="$_index_cate['a']" limit="8">
                         <li>
                             <a class="text-muted" href="{:U('Article/Home/Article/detail', array('id' => $vo['id']))}">
                                 <i class="fa {$vo.icon}"></i>
@@ -159,7 +136,7 @@
             <div class="col-xs-12 col-sm-6">
                 <h3>资质优势 <small>／Advantages</small></h3>
                 <div class="row advantages">
-                    <article:article_list name="vo" cid="8" limit="4">
+                    <article:article_list name="vo" cid="$_index_cate['a']" limit="4">
                         <div class="col-xs-6 col-sm-6">
                             <div class="media">
                                 <a href="{:U('Article/Home/Article/detail', array('id' => $vo['id']))}">
@@ -200,33 +177,4 @@
             </div>
         </div>
     </div>
-</block>
-
-<block name="script">
-    <script type="text/javascript" src="__JS__/modernizr.custom.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            // 在小屏幕上让naver变成一个按钮点击后显示内容
-            var changeClass = function (r,className1,className2) {
-                var regex = new RegExp("(?:^|\\s+)" + className1 + "(?:\\s+|$)");
-                if( regex.test(r.className) ) {
-                    r.className = r.className.replace(regex,' '+className2+' ');
-                }
-                else{
-                    r.className = r.className.replace(new RegExp("(?:^|\\s+)" + className2 + "(?:\\s+|$)"),' '+className1+' ');
-                }
-                return r.className;
-            };
-
-            //  Creating our button in JS for smaller screens
-            var menuElements = document.getElementById('product-menu');
-            menuElements.insertAdjacentHTML('afterBegin','<button type="button" id="menutoggle" class="navtoogle hidden" aria-hidden="true"><i aria-hidden="true" class="icon-menu"> </i> 产品</button>');
-
-            //  Toggle the class on click to show / hide the menu
-            document.getElementById('menutoggle').onclick = function() {
-                changeClass(this, 'navtoogle active', 'navtoogle');
-            }
-            document.getElementById('menutoggle').click();  // 自动点击
-        });
-    </script>
 </block>

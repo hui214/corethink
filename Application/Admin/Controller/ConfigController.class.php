@@ -7,7 +7,6 @@
 // | Author: jry <598821125@qq.com> <http://www.corethink.cn>
 // +----------------------------------------------------------------------
 namespace Admin\Controller;
-use Think\Controller;
 use Common\Util\Think\Page;
 /**
  * 系统配置控制器

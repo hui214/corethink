@@ -69,10 +69,6 @@ class UserController extends AdminController {
                 ->addRightButton('edit', array('model' => 'admin_user'))          // 添加编辑按钮
                 ->addRightButton('forbid', array('model' => 'admin_user'))        // 添加禁用/启用按钮
                 ->addRightButton('recycle', array('model' => 'admin_user'))        // 添加删除按钮
-                ->alterTableData(  // 修改列表数据
-                    array('key' => 'id', 'value' => '1'),
-                    array('right_button' => '<a class="label label-warning">超级管理员无需操作</a>')
-                )
                 ->display();
     }
 
@@ -95,11 +91,13 @@ class UserController extends AdminController {
                 $this->error($user_object->getError());
             }
         } else {
+        $user_object = D('User/User');
             // 使用FormBuilder快速建立表单页面。
             $builder = new \Common\Builder\FormBuilder();
             $builder->setMetaTitle('新增用户') //设置页面标题
                     ->setPostUrl(U('add'))    //设置表单提交地址
                     ->addFormItem('reg_type', 'hidden', '注册方式', '注册方式')
+                    ->addFormItem('user_type', 'radio', '用户类型', '用户类型', select_list_as_tree('User/Type'))
                     ->addFormItem('nickname', 'text', '昵称', '昵称')
                     ->addFormItem('username', 'text', '用户名', '用户名')
                     ->addFormItem('password', 'password', '密码', '密码')
@@ -148,6 +146,7 @@ class UserController extends AdminController {
             $builder->setMetaTitle('编辑用户')  // 设置页面标题
                     ->setPostUrl(U('edit'))    // 设置表单提交地址
                     ->addFormItem('id', 'hidden', 'ID', 'ID')
+                    ->addFormItem('user_type', 'radio', '用户类型', '用户类型', select_list_as_tree('User/Type'))
                     ->addFormItem('nickname', 'text', '昵称', '昵称')
                     ->addFormItem('username', 'text', '用户名', '用户名')
                     ->addFormItem('password', 'password', '密码', '密码')

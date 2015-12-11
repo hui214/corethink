@@ -84,7 +84,7 @@ class ListBuilder extends Controller {
                 $my_attribute['title'] = '启用';
                 $my_attribute['target-form'] = 'ids';
                 $my_attribute['class'] = 'btn btn-success ajax-post confirm';
-                $my_attribute['model'] = CONTROLLER_NAME;  // 要操作的数据模型
+                $my_attribute['model'] = $attribute['model'] ? : CONTROLLER_NAME;;  // 要操作的数据模型
                 $my_attribute['href']  = U(
                     MODULE_NAME.'/'.CONTROLLER_NAME.'/setStatus',
                     array(
@@ -555,15 +555,21 @@ class ListBuilder extends Controller {
                     case 'date':
                         $data[$column['name']] = time_format($data[$column['name']], 'Y-m-d');
                         break;
+                    case 'datetime':
+                        $data[$column['name']] = time_format($data[$column['name']]);
+                        break;
                     case 'time':
                         $data[$column['name']] = time_format($data[$column['name']]);
                         break;
+                    case 'avatar':
+                        $data[$column['name']] = '<img style="width:40px;height:40px;" src="'.get_cover($data[$column['name']]).'">';
+                        break;
                     case 'picture':
-                        $data[$column['name']] = '<img src="'.get_cover($data[$column['name']]).'">';
+                        $data[$column['name']] = '<img class="picture" src="'.get_cover($data[$column['name']]).'">';
                         break;
                     case 'pictures':
                         $temp = explode(',', $data[$column['name']]);
-                        $data[$column['name']] = '<img src="'.get_cover($temp[0]).'">';
+                        $data[$column['name']] = '<img class="picture" src="'.get_cover($temp[0]).'">';
                         break;
                     case 'type':
                         $form_item_type = C('FORM_ITEM_TYPE');

@@ -42,9 +42,10 @@ class AdminController extends CommonController {
 
     /**
      * 设置一条或者多条数据的状态
+     * @param $script 严格模式要求处理的纪录的uid等于当前登陆用户UID
      * @author jry <598821125@qq.com>
      */
-    public function setStatus($model = CONTROLLER_NAME) {
+    public function setStatus($model = CONTROLLER_NAME, $script = false) {
         $ids    = I('request.ids');
         $status = I('request.status');
         if (empty($ids)) {
@@ -52,6 +53,9 @@ class AdminController extends CommonController {
         }
         $model_primary_key = D($model)->getPk();
         $map[$model_primary_key] = array('in',$ids);
+        if ($script) {
+            $map['uid'] = array('eq', is_login());
+        }
         switch ($status) {
             case 'forbid' :  // 禁用条目
                 $data = array('status' => 0);
@@ -144,7 +148,7 @@ class AdminController extends CommonController {
         $id = is_array($id) ? implode(',',$id) : $id;
         //如存在id字段，则加入该条件
         $fields = D($model)->getDbFields();
-        if (in_array('id',$fields) && !empty($id)) {
+        if (in_array('id', $fields) && !empty($id)) {
             $where = array_merge(
                 array('id' => array('in', $id )),
                 (array)$where
@@ -159,7 +163,8 @@ class AdminController extends CommonController {
             ),
             (array)$msg
         );
-        if (D($model)->where($map)->save($data) !== false) {
+        $result = D($model)->where($map)->save($data);
+        if ($result != false) {
             $this->success($msg['success'], $msg['url'], $msg['ajax']);
         } else {
             $this->error($msg['error'], $msg['url'], $msg['ajax']);

@@ -61,8 +61,7 @@
         .builder-form-box .builder-form-container .builder-form .input,
         .builder-form-box .builder-form-container .builder-form .select,
         .builder-form-box .builder-form-container .builder-form .textarea,
-        .builder-form-box .builder-form-container .builder-form .img-box,
-        .builder-form-box .builder-form-container .builder-form .file-box {
+        .builder-form-box .builder-form-container .builder-form .list-group {
             width: 70%;
         }
         .builder-form-box .builder-form .submit,
@@ -80,24 +79,6 @@
             float: left;
         }
     }
-    .builder-form-box .huploadify-upload {
-        margin-bottom: 10px;
-    }
-    .builder-form-box .huploadify-preview img {
-        max-width: 100px;
-        max-height: 100px;
-    }
-    .builder-form-box .img-box {
-        position: relative;
-        vertical-align: top;
-        height: 90px;
-    }
-    .builder-form-box .img-box img {
-        margin-top: 8px;
-        max-width: 150px;
-        max-height: 90px;
-        margin-right: 8px;
-    }
     .builder-form-box .img-box .remove-picture {
         color: red;
         position: absolute;
@@ -110,9 +91,6 @@
     .builder-form-box .img-box .remove-picture:hover {
         color: #DD0000;
         box-shadow: inset 0 1px 1px red, 0 0 8px red;
-    }
-    .builder-form-box .file-box {
-        margin-top: 15px;
     }
     .builder-form-box .file-box .remove-file {
         color: red;
@@ -252,6 +230,9 @@
                                                             <include file='Application/Common/Builder/FormType/tags.html' type='tab_' />
                                                             {// 拖动排序 }
                                                             <include file='Application/Common/Builder/FormType/board.html' type='tab_' />
+                                                            // 扩展类型
+                                                            <default />
+                                                            {:hook('FormBuilderExtend', array('form' => $tab_form, 'type' => tab_))}
                                                         </switch>
                                                     </volist>
                                                 </div>
@@ -260,6 +241,10 @@
                                     </div>
                                 </div>
                             </case>
+
+                            // 扩展类型
+                            <default />
+                            {:hook('FormBuilderExtend', array('form' => $form))}
                         </switch>
                     </volist>
                     <empty name="form_items">

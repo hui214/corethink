@@ -153,27 +153,28 @@ class UserController extends HomeController {
     public function register2() {
         $uid  = $this->is_login();
         if (IS_POST) {
-            if ($_FILES) {
-                $_FILES['file']['name'] = $_FILES['file']['name'].'.png';
-                $upload_result = json_decode(D('Admin/Upload')->upload(), true);
-                if ($upload_result['error'] == 0) {
+            if ($_POST) {
+                if (!$_POST['avatar']['src'] || !$_POST['avatar']['w'] || !$_POST['avatar']['h'] || $_POST['avatar']['x'] === '' || $_POST['avatar']['y'] === '') {
+                    $this->error('参数不完整');
+                }
+                $result = D('Admin/Upload')->crop($_POST['avatar']);
+                if ($result['error'] != 1) {
                     $user_object = D('User/User');
-                    $result = $user_object->where(array('id' => $uid))
-                            ->setField('avatar', $upload_result['id']);
+                    $result = $user_object->where(array('id' => $uid))->setField('avatar', $result['id']);
                     if ($result) {
-                        $this->success('头像添加成功', U('register3'));
+                        $this->success('头像设置成功', U('register3'));
                     } else {
-                        $this->error('头像添加失败'.$user_object->getError());
+                        $this->error('头像设置失败'.$user_object->getError());
                     }
                 } else {
-                    $this->error('头像上传失败');
+                    $this->error('头像保存失败');
                 }
             } else {
                 $this->error('请选择文件');
             }
         } else {
             $this->assign('user_info', D('User/User')->detail($uid));
-            $this->assign('meta_title', '添加头像');
+            $this->assign('meta_title', '设置头像');
             $this->display('register2');
         }
     }
@@ -187,17 +188,7 @@ class UserController extends HomeController {
             // 强制设置用户ID
             $uid = $this->is_login();
             $_POST['uid'] = $uid;
-
-            //解析数据类似复选框类型的数组型值
-            foreach($_POST as $key => $val){
-                if (is_array($val)) {
-                    $_POST[$key] = implode(',', $val);
-                } else if (check_date_time($val)) {
-                    $_POST[$key] = strtotime($val);
-                } else if (check_date_time($val, 'Y-m-d')) {
-                    $_POST[$key] = strtotime($val);
-                }
-            }
+            $_POST = format_data();
 
             // 获取用户信息
             $user_object = D('User/User');

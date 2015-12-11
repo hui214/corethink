@@ -62,17 +62,12 @@ class IndexController extends AdminController {
     }
 
     /**
-     * 完全删除指定文件目录
+     * 删除缓存
      * @author jry <598821125@qq.com>
      */
-    public function rmdirr($dirname = RUNTIME_PATH) {
+    public function removeRuntime() {
         $file = new \Common\Util\File();
-        $file_list = $file::get_dirs(getcwd() . '/' . $dirname);
-        foreach ($file_list['dir'] as $val) {
-            if ($val !== '.' && $val !== '..') {
-                $result = $file->del_dir($dirname.$val);
-            }
-        }
+        $result = $file->del_dir(RUNTIME_PATH);
         if ($result) {
             $this->success("缓存清理成功");
         } else {

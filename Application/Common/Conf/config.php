@@ -23,8 +23,10 @@ $_config = array(
 
     'PRODUCT_NAME'    => 'CoreThink',                  // 产品名称
     'CURRENT_VERSION' => '1.1.0',                      // 当前版本
-    'BETA_VERSION'    => '3.0',                        // 测试版本 0表示正式版本
-    'BUILD_VERSION'   => '201511171938',               // 编译标记
+    'BETA_VERSION'    => 'flase',                      // 测试版本 flase表示正式版本
+    'BUILD_VERSION'   => '201512111938',               // 编译标记
+    'PRODUCT_MODEL'   => 'c3',                         // 产品型号
+    'PRODUCT_TITLE'   => '开源版',                      // 产品标题
     'WEBSITE_DOMAIN'  => 'http://www.corethink.cn',    // 官方网址
     'UPDATE_URL'      => '/appstore/home/core/update', // 官方更新网址
     'COMPANY_NAME'    => '南京科斯克网络科技有限公司',   // 公司名称

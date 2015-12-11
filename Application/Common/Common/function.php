@@ -34,6 +34,30 @@ function parse_attr($value, $type = null) {
 }
 
 /**
+ * POST数据提前处理
+ * @return array
+ * @author jry <598821125@qq.com>
+ */
+function format_data($data = null) {
+    //解析数据类似复选框类型的数组型值
+    if (!$data) {
+        $data = $_POST;
+    }
+    foreach($data as $key => $val){
+        if (is_array($val)) {
+            $data[$key] = implode(',', $val);
+        } else if (check_date_time($val)) {
+            $data[$key] = strtotime($val);
+        } else if (check_date_time($val, 'Y-m-d H:i')) {
+            $data[$key] = strtotime($val);
+        } else if (check_date_time($val, 'Y-m-d')) {
+            $data[$key] = strtotime($val);
+        }
+    }
+    return $data;
+}
+
+/**
  * 获取所有数据并转换成一维数组
  * @author jry <598821125@qq.com>
  */
@@ -43,7 +67,12 @@ function select_list_as_tree($model, $map = null, $extra = null, $key = 'id') {
     if ($map) {
         $con = array_merge($con, $map);
     }
-    $list = D($model)->where($con)->order('sort asc, id asc')->select();
+    $model_object = D($model);
+    if (in_array('sort', $model_object->getDbFields())) {
+        $list = $model_object->where($con)->order('sort asc, id asc')->select();
+    } else {
+        $list = $model_object->where($con)->order('id asc')->select();
+    }
 
     //转换成树状列表(非严格模式)
     $tree = new \Common\Util\Tree();
@@ -111,7 +140,7 @@ function html2text($str) {
  * @author jry <598821125@qq.com>
  */
 function friendly_date($sTime, $type = 'normal', $alt = 'false') {
-    $date = new \Common\Util\Think\Date($sTime);
+    $date = new \Common\Util\Think\Date((int)$sTime);
     return $date->friendlyDate($type, $alt);
 }
 
@@ -184,6 +213,7 @@ function is_login() {
  */
 function get_user_info($id, $field) {
     $userinfo = D('Admin/User')->find($id);
+    $userinfo['avatar_url'] = get_cover($userinfo['avatar'], 'avatar');
     if ($userinfo[$field]) {
         return $userinfo[$field];
     }

@@ -24,6 +24,7 @@ $(function(){
         var data_value = $(this).attr('data-value');
         url = change_url_parameter(url, data_name, data_value);
         window.location.href = url;
+        return false;
     });
 
     // 一次性初始化所有弹出框

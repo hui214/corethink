@@ -114,7 +114,6 @@ class InitConfigBehavior extends Behavior {
                         $system_config['HAS_WAP'] = 'wap';
                     }
                 } else {
-                
                     if (is_dir(APP_PATH.MODULE_NAME.'/View/wap')) {
                         $system_config['HAS_WAP'] = 'wap';
                     }
@@ -148,15 +147,24 @@ class InitConfigBehavior extends Behavior {
                 $system_config['TMPL_EXCEPTION_FILE'] = APP_PATH.'Home/View/Public/think/exception.html';  // 异常页面的模板文件
             }
 
+            // 加载Formbuilder扩展类型
+            $system_config['FORM_ITEM_TYPE'] = C('FORM_ITEM_TYPE');
+            $formbuilder_extend = explode(',', D('Admin/Hook')->getFieldByName('FormBuilderExtend', 'addons'));
+            if ($formbuilder_extend) {
+                $addon_object = D('Admin/Addon');
+                foreach ($formbuilder_extend as $val) {
+                    $temp = json_decode($addon_object->getFieldByName($val, 'config'), true);
+                    if ($temp['status']) {
+                        $form_type[$temp['form_item_type_name']] = array($temp['form_item_type_title'], $temp['form_item_type_field']);
+                        $system_config['FORM_ITEM_TYPE'] = array_merge($system_config['FORM_ITEM_TYPE'], $form_type);
+                    }
+                }
+            }
+
             S('DB_CONFIG_DATA', $system_config, 3600);  // 缓存配置
         }
 
         C($system_config);  // 添加配置
-
-        // 如果存在wap专用模版同时又确实是wap方式访问则设置WAP标记
-        if (C('HAS_WAP') && is_wap()) {
-            C('IS_WAP', C('HAS_WAP'));
-        }
 
         // 检测系统授权
         if ($system_config['MODULE_MARK'] === 'Home' && (C('CT_USERNAME') !== 'trial')) {

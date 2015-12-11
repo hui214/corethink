@@ -6,7 +6,7 @@
     // 获取所有分类
     $map['status'] = array('egt', '0');  // 禁用和正常状态
     $map['group'] = array('eq', 1);
-    $data_list = D('Category')->field('id,pid,group,doc_type,title,url,icon,create_time,sort,status')
+    $data_list = D('Category')->field('id,pid,group,doc_type,title,url,create_time,sort,status')
                ->where($map)->order('sort asc,id asc')->select();
 
     // 非系统特殊类型则给标题加上链接以便于进入相应文档列表

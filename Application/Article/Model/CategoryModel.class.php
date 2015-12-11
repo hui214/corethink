@@ -110,7 +110,7 @@ class CategoryModel extends Model {
      * @return array          分类树
      * @author jry <598821125@qq.com>
      */
-    public function getCategoryTree($id = 0, $limit = null, $group = 1, $field = 'id,pid,title,icon,create_time,sort') {
+    public function getCategoryTree($id = 0, $limit = null, $group = 1, $field = true) {
         //获取当前分类信息
         if ((int)$id > 0) {
             $info = $this->find($id);

@@ -7,7 +7,7 @@
 // | Author: jry <598821125@qq.com> <http://www.corethink.cn>
 // +----------------------------------------------------------------------
 namespace Admin\Controller;
-use \Common\Util\Tree;
+use Common\Util\Tree;
 /**
  * 链接控制器
  * @author jry <598821125@qq.com>
@@ -87,7 +87,6 @@ class LinkController extends AdminController {
                     ->addFormItem('url', 'text', '请填写外链URL地址', '支持http://格式或者TP的U函数解析格式')
                     ->addFormItem('icon', 'icon', '图标', '链接图标')
                     ->addFormItem('sort', 'num', '排序', '用于显示的顺序')
-                    ->setExtraHtml($this->extra_html)
                     ->display();
         }
     }
@@ -123,7 +122,6 @@ class LinkController extends AdminController {
                     ->addFormItem('icon', 'icon', '图标', '链接图标')
                     ->addFormItem('sort', 'num', '排序', '用于显示的顺序')
                     ->setFormData($info)
-                    ->setExtraHtml($this->extra_html)
                     ->display();
         }
     }

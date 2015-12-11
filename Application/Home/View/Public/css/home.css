@@ -1,96 +1,17 @@
-/* cui reset */
-.btn,
-.alert,
-.panel,
-.label,
-.navbar,
-.thumbnail,
-.form-control,
-.navbar-toggle,
-.nav-tabs>li>a,
-.dropdown-menu,
-.panel-heading,
-.pagination>li>a,
-.list-group-item,
-.input-group-addon,
-.panel-group .panel {
-    border-radius: 0 !important;
+.panel {
     box-shadow: none;
 }
-.btn-pill {
-    border-radius: 1000em  !important;
-}
-/* 导航 */
-.navbar .navbar-brand img {
-    height: 32px;
-    margin: -6px 0px;
-}
-.navbar .dropdown-toggle>img {
-    height: 32px;
-    margin: -10px 0px;
-}
-@media (max-width: 768px) {
-    .col-xs-12 {
-        padding: 0 !important;
-    }
-    .panel,
-    .thumbnail {
-        margin-bottom: 10px;
-    }
-}
-@media (min-width: 768px) {
-    .panel,
-    .thumbnail {
-        margin-bottom: 15px;
-    }
-}
-.carousel:hover .carousel-control {
-    display: block;
-}
-
-
-/* 通用样式 */
-body {
-    background:rgba(244, 244, 244, .8);;
-    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.bg-white {
-    background: #fff !important;
-}
-@media (min-width: 768px) {
-    .main {
-        padding-top: 15px;
-    }
-}
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-
-/* 页面顶部 */
-.full-header .header {
-    min-height: 30px;
-    margin-bottom: 0;
-    border: 0;
-}
-@media (min-width: 768px) {
-    .full-header .header .navbar-nav>li>a {
-        padding: 5px;
-        font-size:12px;
-    }
-    .full-header .header .navbar-nav img.nav-img {
-        height: 20px;
-        margin: -5px 0px;
-    }
+#main {
+    padding-top: 20px;
 }
 
 
 /* 主导航 */
 .main-nav {
     color: #fff;
-    margin-bottom: 0;
     background-color: #1685d0;
     border-color: #1685d0;
+    margin-bottom: 0;
 }
 .main-nav .navbar-nav>li>a,
 .main-nav .navbar-toggle,
@@ -141,7 +62,6 @@ body {
 .module-nav.navbar {
     border-top: 0;
     background: #fff;
-    margin-bottom: 0;
 }
 @media (min-width: 768px) {
     .module-nav ul.nav>li>a {
@@ -169,64 +89,4 @@ body {
     .module-nav .navbar-nav {
         margin: 0px;
     }
-}
-
-
-/* 底部样式 */
-.footer {
-    background-color: #1685d0;
-    color: #ffffff;
-    padding: 30px 0px;
-}
-.footer ul li {
-    border-right: thin solid;
-    padding: 0px 8px;
-}
-.footer ul > li:last-child {
-    border-style: none;
-}
-.footer p a {
-    color: #ffffff;
-}
-.footer ul li a {
-    color:#ffffff;
-}
-
-
-/*注册*/
-.reg-breadcrumb  {
-    margin-bottom: 0;
-    padding: 12px 15px;
-}
-
-
-/* 处女座的右上角小红点 */
-.red-dot {
-    position: relative;
-    display: inline-block;
-    padding-right: 6px;
-}
-.red-dot::after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 8px;
-    height: 8px;
-    background-color: #f74c31;
-    border-radius: 5px;
-    right: -2px;
-    top: -2px;
-}
-/* 仿IOS右上角红色数字角标 */
-.red-badge-num {
-    height: 17px;
-    line-height: 18px;
-    font-size: 12px;
-    min-width: 17px;
-    padding: 0px 5px;
-    border-radius: 9px;
-    display: inline-block;
-    text-align: center;
-    background: #f74c31;
-    color: #fff;
 }

@@ -61,7 +61,6 @@ class SliderController extends AdminController {
                 ->addRightButton('forbid', array('model' => $this->model))  // 添加禁用/启用按钮
                 ->addRightButton('delete', array('model' => $this->model))  // 添加删除按钮
                 ->display();
-   
     }
 
     /**

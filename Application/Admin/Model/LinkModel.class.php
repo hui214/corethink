@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace Admin\Model;
 use Think\Model;
-use \Common\Util\Tree;
+use Common\Util\Tree;
 /**
  * 链接模型
  * @author jry <598821125@qq.com>
@@ -39,17 +39,4 @@ class LinkModel extends Model {
         array('sort', '0', self::MODEL_INSERT),
         array('status', '1', self::MODEL_INSERT),
     );
-
-    /**
-     * 导航类型
-     * @author jry <598821125@qq.com>
-     */
-    public function nav_type($id) {
-        $list['1'] = '快捷功能';
-        $list['2'] = '热门网站';
-        $list['3'] = '娱乐影音';
-        $list['4'] = '购物消费';
-        $list['5'] = '适用工具';
-        return $id ? $list[$id] : $list;
-    }
 }

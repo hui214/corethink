@@ -18,7 +18,7 @@ return array(
         'developer'   => '南京科斯克网络科技有限公司',
         'website'     => 'http://www.corethink.cn',
         'version'     => '1.1.0',
-        'beta'        => '3.0',
+        'beta'        => 'false',
         'dependences' => array(
             'Admin'   => '1.1.0',
         )
@@ -27,7 +27,7 @@ return array(
     // 模块配置
     'config' => array(
         'need_check' => array(
-            'title'   => '前台发布是否需要审核',
+            'title'   => '前台发布审核',
             'type'    => 'radio',
             'options' => array(
                 '1'   => '需要',
@@ -35,10 +35,24 @@ return array(
             ),
             'value'   => '0',
         ),
+        'toggle_comment' => array(
+            'title'  => '是否允许评论文档',
+            'type'   =>'radio',
+            'options' => array(
+                '1'   => '允许',
+                '0'   => '不允许',
+            ),
+            'value'  => '1',
+        ),
         'group_list' => array(
             'title'  => '栏目分组',
             'type'   =>'array',
             'value'  => '1:默认',
+        ),
+        'cate' => array(
+            'title'  => '首页栏目自定义',
+            'type'   =>'array',
+            'value'  => 'a:1',
         ),
         'taglib' => array(
             'title'  => '加载标签库',
@@ -184,33 +198,54 @@ return array(
         ),
         '25' => array(
             'pid'   => '2',
-            'title' => '友情链接',
-            'icon'  => 'fa fa-link',
-            'url'   => 'Article/Admin/FriendlyLink/index',
+            'title' => '底部导航',
+            'icon'  => 'fa fa-map-signs',
+            'url'   => 'Article/Admin/Footnav/index',
         ),
         '26' => array(
             'pid'   => '25',
             'title' => '新增',
-            'url'   => 'Article/Admin/FriendlyLink/add',
+            'url'   => 'Article/Admin/Footnav/add',
         ),
         '27' => array(
             'pid'   => '25',
             'title' => '编辑',
-            'url'   => 'Article/Admin/FriendlyLink/edit',
+            'url'   => 'Article/Admin/Footnav/edit',
         ),
         '28' => array(
             'pid'   => '25',
             'title' => '设置状态',
-            'url'   => 'Article/Admin/FriendlyLink/setStatus',
+            'url'   => 'Article/Admin/Footnav/setStatus',
         ),
         '29' => array(
+            'pid'   => '2',
+            'title' => '友情链接',
+            'icon'  => 'fa fa-link',
+            'url'   => 'Article/Admin/FriendlyLink/index',
+        ),
+        '30' => array(
+            'pid'   => '29',
+            'title' => '新增',
+            'url'   => 'Article/Admin/FriendlyLink/add',
+        ),
+        '31' => array(
+            'pid'   => '29',
+            'title' => '编辑',
+            'url'   => 'Article/Admin/FriendlyLink/edit',
+        ),
+        '32' => array(
+            'pid'   => '29',
+            'title' => '设置状态',
+            'url'   => 'Article/Admin/FriendlyLink/setStatus',
+        ),
+        '33' => array(
             'pid'   => '2',
             'title' => '回收站',
             'icon'  => 'fa fa-recycle',
             'url'   => 'Article/Admin/Article/recycle',
         ),
-        '30' => array(
-            'pid'   => '29',
+        '34' => array(
+            'pid'   => '33',
             'title' => '设置状态',
             'url'   => 'Article/Admin/Notice/setStatus',
         ),

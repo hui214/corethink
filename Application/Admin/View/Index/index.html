@@ -2,7 +2,7 @@
 
 <block name="full-header">
     <!-- 顶部导航 -->
-    <div class="navbar navbar-inverse navbar-fixed-top main-nav" role="navigation">
+    <div class="main-nav navbar navbar-inverse navbar-fixed-top main-nav" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-top">
                 <span class="sr-only">切换导航</span>
@@ -28,6 +28,7 @@
                         <span>首页</span>
                     </a>
                 </li>
+                <!-- 主导航 -->
                 <volist name="_menu_list" id="vo">
                     <li>
                         <a href="#module{$vo.id}" role="tab" data-toggle="tab">
@@ -38,7 +39,7 @@
                 </volist>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{:U('Admin/Index/rmdirr')}" class="ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
+                <li><a href="{:U('Admin/Index/removeRuntime')}" class="ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
                 <li><a target="_blank" href="__ROOT__/"><i class="fa fa-external-link-square"></i> 打开前台</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -66,7 +67,7 @@
                             <volist name="_link_list" id="lk" key="fkey">
                                 <li>
                                     <a data-toggle="collapse" href="#navside-collapse-lk-{$lk.id}-{$fkey}">
-                                        <i class="{$lk.icon}"></i>
+                                        <i class="fa {$lk.icon}"></i>
                                         <span class="nav-label">{$lk.title}</span>
                                         <span class="fa arrow"></span>
                                     </a>
@@ -75,7 +76,7 @@
                                             <volist name="lk._child" id="_ns_second" key="skey">
                                                 <li>
                                                     <a href="{$_ns_second['url']}" class="open-tab" tab-name="navside-collapse-{$_ns.id}-{$fkey}-{$skey}">
-                                                        <i class="{$_ns_second.icon}"></i>
+                                                        <i class="fa {$_ns_second.icon}"></i>
                                                         <span class="nav-label">{$_ns_second.title}</span>
                                                     </a>
                                                 </li>
@@ -181,8 +182,8 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Build版本号</td>
-                                                    <td>{:C('BUILD_VERSION')}</td>
+                                                    <td>产品型号</td>
+                                                    <td>{:C('PRODUCT_TITLE')}（ {:C('PRODUCT_MODEL')} ）</td>
                                                 </tr>
                                                 <tr>
                                                     <td>ThinkPHP版本</td>

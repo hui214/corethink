@@ -27,15 +27,15 @@ class UserModel extends Model {
         // 验证用户类型
         array('user_type', 'require', '请选择用户类型', self::MUST_VALIDATE, 'regex', self::MODEL_INSERT),
 
+        //验证用户名
+        array('nickname', 'require', '昵称不能为空', self::MUST_VALIDATE, 'regex', self::MODEL_BOTH),
+
         // 验证用户名
         array('username', 'require', '请填写用户名', self::MUST_VALIDATE, 'regex', self::MODEL_INSERT),
         array('username', '3,32', '用户名长度为1-32个字符', self::MUST_VALIDATE, 'length', self::MODEL_INSERT),
         array('username', '', '用户名被占用', self::MUST_VALIDATE, 'unique', self::MODEL_INSERT),
         array('username', '/^(?!_)(?!\d)(?!.*?_$)[\w]+$/', '用户名只可含有数字、字母、下划线且不以下划线开头结尾，不以数字开头！', self::MUST_VALIDATE, 'regex', self::MODEL_INSERT),
         array('username', 'checkDenyMember', '该用户名禁止使用', self::EXISTS_VALIDATE, 'callback'), //用户名禁止注册
-
-        // 验证用户名
-        array('nickname', 'require', '请填写昵称', self::MUST_VALIDATE, 'regex', self::MODEL_BOTH),
 
         // 验证密码
         array('password', 'require', '请填写密码', self::MUST_VALIDATE, 'regex', self::MODEL_INSERT),
@@ -141,6 +141,7 @@ class UserModel extends Model {
             'username' => $user['username'],
             'nickname' => $user['nickname'],
             'avatar'   => $user['avatar'],
+            'avatar_url' => get_cover($user['avatar'], 'avatar'),
         );
         session('user_auth', $auth);
         session('user_auth_sign', $this->data_auth_sign($auth));

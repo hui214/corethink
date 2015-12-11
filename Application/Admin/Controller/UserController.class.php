@@ -59,10 +59,6 @@ class UserController extends AdminController {
                 ->addRightButton('edit')          // 添加编辑按钮
                 ->addRightButton('forbid')        // 添加禁用/启用按钮
                 ->addRightButton('recycle')        // 添加删除按钮
-                ->alterTableData(  // 修改列表数据
-                    array('key' => 'id', 'value' => '1'),
-                    array('right_button' => '<a class="label label-warning">超级管理员无需操作</a>')
-                )
                 ->display();
     }
 

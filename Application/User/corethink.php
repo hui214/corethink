@@ -18,7 +18,7 @@ return array(
         'developer'   => '南京科斯克网络科技有限公司',
         'website'     => 'http://www.corethink.cn',
         'version'     => '1.1.0',
-        'beta'        => '3.0',
+        'beta'        => 'false',
         'dependences' => array(
             'Admin'   => '1.1.0',
         )
@@ -150,6 +150,6 @@ return array(
             'pid'   => '5',
             'title' => '设置状态',
             'url'   => 'User/Admin/User/setStatus',
-        )
+        ),
     )
 );

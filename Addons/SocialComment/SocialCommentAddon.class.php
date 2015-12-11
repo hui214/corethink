@@ -6,25 +6,25 @@
 // +----------------------------------------------------------------------
 // | Author: jry <598821125@qq.com> <http://www.corethink.cn>
 // +----------------------------------------------------------------------
-namespace Addons\QiuBai;
+namespace Addons\SocialComment;
 use Common\Controller\Addon;
 /**
- * 系统环境信息插件
+ * 通用社交化评论插件
  * @author thinkphp
  */
-class QiuBaiAddon extends Addon {
+class SocialCommentAddon extends Addon {
     /**
      * 插件信息
      * @author jry <598821125@qq.com>
      */
     public $info = array(
-        'name' => 'QiuBai',
-        'title' => '糗事百科',
-        'description' => '读别人的糗事，娱乐自己',
-        'status' => 1,
-        'author' => 'CoreThink',
+        'name'        => 'SocialComment',
+        'title'       => '通用社交化评论',
+        'description' => '集成了各种社交化评论插件，轻松集成到系统中。',
+        'status'      => 1,
+        'author'      => 'CoreThink',
         'version'     => '1.1.0',
-        'beta'        => '3.0',
+        'beta'        => 'false',
     );
 
     /**
@@ -32,7 +32,7 @@ class QiuBaiAddon extends Addon {
      * @author jry <598821125@qq.com>
      */
     public $hooks = array(
-        '0' => 'AdminIndex',
+        '0' => 'SocialComment',
     );
 
     /**
@@ -52,14 +52,15 @@ class QiuBaiAddon extends Addon {
     }
 
     /**
-     * 实现的AdminIndex钩子方法
+     * 实现的SocialComment钩子方法
      * @author jry <598821125@qq.com>
      */
-    public function AdminIndex($param) {
+    public function SocialComment($param){
+        //检查插件是否开启
         $config = $this->getConfig();
-        $this->assign('addons_config', $config);
-        if ($config['display']) {
-            $this->display('widget');
+        if($config['status']){
+            $this->assign('addons_config', $config);
+            $this->display('comment');
         }
     }
 }

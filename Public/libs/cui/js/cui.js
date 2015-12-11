@@ -2034,7 +2034,7 @@
     this.$body          = $(document.body)
     this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
     this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
-    this.selector       = this.options.selector || ((this.options.target || '') + ' .nav li > a')
+    this.selector       = (this.options.target || '') + ' .nav li > a'
     this.offsets        = []
     this.targets        = []
     this.activeTarget   = null
@@ -2187,6 +2187,15 @@
   })
 
 }(jQuery);
+
+/* ========================================================================
+ * Bootstrap: tab.js v3.3.5
+ * http://getbootstrap.com/javascript/#tabs
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
 
 +function ($) {
   'use strict';
@@ -2347,7 +2356,7 @@
     'use strict';
 
     //ajax get请求
-    $('body').delegate('.ajax-get', 'click', function() {
+    $(document).delegate('.ajax-get', 'click', function() {
         var target;
         var that = this;
         if ($(this).hasClass('confirm')) {
@@ -2368,7 +2377,7 @@
                     setTimeout(function() {
                         $(that).removeClass('disabled').prop('disabled', false);
                         if ($(that).hasClass('no-refresh')) {
-                            return false;alert();
+                            return false;
                         }
                         if (data.url && !$(that).hasClass('no-forward')) {
                             location.href = data.url;
@@ -2405,7 +2414,7 @@
     'use strict';
 
     //ajax post submit请求
-    $('body').delegate('.ajax-post', 'click', function() {
+    $(document).delegate('.ajax-post', 'click', function() {
         var target, query, form;
         var target_form = $(this).attr('target-form');
         var that = this;
@@ -3073,6 +3082,36 @@
             };
         }
     });
+
+}(jQuery);
+
+/* ========================================================================
+ * cui: placeholder.js v0.0.1
+ * http://cui.corethink.cn/
+ * ========================================================================
+ * Copyright 2015-2020 Corethink, Inc.
+ * ======================================================================== */
+
+
++function ($) {
+    'use strict';
+
+    var isPlaceholderSupport = (function(){
+        return 'placeholder' in document.createElement('input');
+    })();
+    if(!isPlaceholderSupport){
+        $("input.form-control").show(function(){
+            var place_text = $(this).attr('placeholder');
+            $(this).val(place_text);
+        })
+        .focus(function(){
+            $(this).val("");
+            $(this).val($(this).val());
+        })
+        .blur(function(){
+            if($(this).val()=="") $(this).val($(this).attr("placeholder"));
+        });
+    }
 
 }(jQuery);
 

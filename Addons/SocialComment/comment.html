@@ -1,0 +1,35 @@
+<div class="socialcomment">
+    <switch name="addons_config.comment_type">
+        <case value="1">
+            <div id="uyan_frame"></div>
+            <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid={$addons_config.comment_uid_youyan}"></script>
+        </case>
+        <case value="2">
+            <div class="ds-thread" data-form-positon="{$addons_config.comment_form_pos_duoshuo}" data-limit="{$addons_config.comment_data_list_duoshuo}" data-order="{$addons_config.comment_data_order_duoshuo}"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {
+                    short_name: "{$addons_config.comment_short_name_duoshuo}"
+                };
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+        </case>
+        <case value="3">
+            <div id="SOHUCS"></div>
+            <script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+            <script type="text/javascript">
+                window._config = { showScore: true };
+                window.changyan.api.config({
+                    appid: '{$addons_config.appid}',
+                    conf: '{$addons_config.conf}'
+                });
+            </script> 
+        </case>
+    </switch>
+</div>

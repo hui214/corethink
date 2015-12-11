@@ -110,9 +110,9 @@ sql;
         //新建表
         $sql = <<<sql
             CREATE TABLE IF NOT EXISTS `{$this->table_name}` (
-            `uid`  int(10) UNSIGNED NOT NULL COMMENT 'UID' ,
+            `uid` int(10) UNSIGNED NOT NULL COMMENT 'UID' ,
             `{$field['name']}` {$field['field']} {$default} COMMENT '{$field['title']}' ,
-            PRIMARY KEY (`id`)
+            PRIMARY KEY (`uid`)
             )
             ENGINE=MyISAM
             DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci

@@ -172,6 +172,7 @@ EOF;
                     ->addRightButton('forbid', array('model' => $this->model))  //添加禁用/启用按钮
                     ->addRightButton('recycle', array('model' => $this->model)) //添加回收按钮
                     ->setExtraHtml($extra_html)
+                    ->setTemplate('Admin/builder/list')
                     ->display();
         }
     }
@@ -236,6 +237,7 @@ EOF;
             $builder->setMetaTitle('新增文章') //设置页面标题
                     ->setPostUrl(U('add')) //设置表单提交地址
                     ->setExtraItems($new_attribute_list)
+                    ->setTemplate('Admin/builder/form')
                     ->display();
         }
     }
@@ -306,6 +308,7 @@ EOF;
                     ->addFormItem('id', 'hidden', 'ID', 'ID')
                     ->setExtraItems($new_attribute_list)
                     ->setFormData($article_info)
+                    ->setTemplate('Admin/builder/form')
                     ->display();
         }
     }

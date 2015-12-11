@@ -18,7 +18,7 @@ return array(
         'developer'   => '南京科斯克网络科技有限公司',
         'website'     => 'http://www.corethink.cn',
         'version'     => '1.1.0',
-        'beta'        => '3.0',
+        'beta'        => 'false',
     ),
 
     // 后台菜单及权限节点配置

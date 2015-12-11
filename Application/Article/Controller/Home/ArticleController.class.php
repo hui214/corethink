@@ -342,13 +342,6 @@ class ArticleController extends HomeController {
     public function update() {
         $this->is_login();
 
-        // 解析数据类似复选框类型的数组型值
-        foreach ($_POST as $key => $val) {
-            if (is_array($val)) {
-                $_POST[$key] = implode(',', $val);
-            }
-        }
-
         // 新增或更新文档
         $article_object = D('Article');
         $result = $article_object->update();
@@ -369,68 +362,26 @@ class ArticleController extends HomeController {
      * @author jry <598821125@qq.com>
      */
     public function detail($id) {
-        $map['status'] = array('egt', 1);  // 正常、隐藏两种状态是可以访问的
-        $info = D('Article')->where($map)->detail($id);
+        $article_object = D('Article');
+        $info = $article_object->where('status=1')->detail($id);
         if (!$info) {
-            $this->error('您访问的文档已禁用或不存在');
-        }
-        $result = D('Article')->where(array('id' => $id))->SetInc('view');  // 阅读量加1
-
-        // 获取文档所属分类详细信息
-        $category_info = D('Category')->find($info['cid']);
-
-        // 获取该分类绑定文档模型的主要字段
-        $type_object     = D('Type');
-        $attribute_object = D('Attribute');
-        $doc_type_info   = $type_object->find($category_info['doc_type']);
-        $type_main_field = $type_object->getFieldById($category_info['doc_type'],'main_field');
-        $type_main_field  = $attribute_object->getFieldById($doc_type_info['main_field'], 'name');
-
-        // 获取筛选字段
-        $con = array();
-        $con['id'] = array('in', $doc_type_info['filter_field']);
-        $filter_field_list = $attribute_object->where($con)->select();
-        $new_filter_field_list = array();
-        foreach ($filter_field_list as $key => $val) {
-            $val['options'] = parse_attr($val['options']);
-            $new_filter_field_list[$val['name']] = $val;
-        }
-
-        // 给文档主要字段赋值，如：文章标题、商品名称
-        $info['main_field'] = $info[$type_main_field];
-
-        if ($info['file']) {
-            $file_list = explode(',', $info['file']);
-            foreach ($file_list as &$file) {
-                $file = D('Home/Upload')->find($file);
-                $uid = is_login();
-                if ($uid) {
-                    $file['token'] = \Think\Crypt::encrypt($file['md5'], user_md5($uid), 3600);
-                } else {
-                    $file['token'] = 'please login';
-                }
-            }
-            $info['file_list'] = $file_list;
+            $this->error('错误：'. $article_object->getError());
         }
 
         // 设置文档显示模版
-        if(C('CURRENT_THEME')){
-            if ($category_info['detail_template']) {
-                $template = 'article/'.$info['detail_template'];
-            } else {
-                $template = 'article/detail_default';
-            }
+        if ($info['category']['detail_template']) {
+            $template = 'article/'.$info['category']['detail_template'];
         } else {
-            $template = $category_info['detail_template'] ? 'Home/article/'.$category_info['detail_template'] : 'Home/article/detail_default';
+            $template = 'article/detail_default';
+        }
+        if (!C('CURRENT_THEME')) {
+            $template = 'Home/'.$template;
         }
 
-        // 获取作者信息
-        $info['user'] = get_user_info($info['uid']);
-
         $this->assign('info', $info);
-        $this->assign('_current_category', $category_info);
-        $this->assign('_filter_field_list', $new_filter_field_list);
-        $this->assign('_search_url', U('index', array('cid' => $category_info['id'])));  // 构造搜索地址
+        $this->assign('_current_category', $info['category']);
+        $this->assign('_filter_field_list', $info['filter_field_list']);
+        $this->assign('_search_url', U('index', array('cid' => $info['category']['id'])));  // 构造搜索地址
         $this->assign('meta_title', $info['main_field']);
         $this->assign('meta_keywords', $info['tags'] ? : C('WEB_SITE_KEYWORD'));
         $this->assign('meta_description', $info['abstract'] ? : C('WEB_SITE_DESCRIPTION'));

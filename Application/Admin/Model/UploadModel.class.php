@@ -37,6 +37,7 @@ class UploadModel extends Model {
      * @author jry <598821125@qq.com>
      */
     protected $_auto = array (
+        array('uid', 'is_login', self::MODEL_INSERT, 'function'),
         array('create_time', NOW_TIME, self::MODEL_INSERT),
         array('update_time', NOW_TIME, self::MODEL_BOTH),
         array('status', '1', self::MODEL_INSERT),
@@ -58,9 +59,9 @@ class UploadModel extends Model {
             }
         }
         if (in_array($result['ext'], array('jpg', 'jpeg', 'png', 'gif', 'bmp') )) {
-            $result['show'] = '<img src="'.$result['real_path'].'">';
+            $result['show'] = '<img class="picture" src="'.$result['real_path'].'">';
         } else {
-            $result['show'] = '<img src="'.C('TMPL_PARSE_STRING.__HOME_IMG__').'/file/'.$result['ext'].'.png">';
+            $result['show'] = '<img class="picture" src="'.C('TMPL_PARSE_STRING.__HOME_IMG__').'/file/'.$result['ext'].'.png">';
         }
     }
 
@@ -75,25 +76,95 @@ class UploadModel extends Model {
     }
 
     /**
+     * curl模拟上传文件
+     * @author jry <598821125@qq.com>
+     */
+    public function curlUploadFile($url, $filename, $formname = 'file') {
+        // 上传token
+        $upload_token = \Org\Util\String::randString(32,1);
+        S('upload_token', $upload_token, array('prefix' => 'CT_Home_', 'expire' => 300));
+
+        // curl
+        if (version_compare(phpversion(),'5.5.0') >= 0 && class_exists('CURLFile')) {
+            $post_data = array(
+                $formname => new \CURLFile(realpath($filename)),
+            );
+        } else {
+            $post_data = array(
+                $formname => '@'.realpath($filename),
+            );
+        }
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('uploadtoken: '. $upload_token ));
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
+
+    /**
+     * 裁剪图片
+     * @author jry <598821125@qq.com>
+     */
+    public function crop($data = null) {
+        $image = new \Think\Image();
+        $image->open($data['src']);
+        $type = $image->type();
+        if ($image) {
+            $file = './Runtime/Temp/crop'.\Org\Util\String::randString(12,1).'.'.$type;
+            $url  = U(C('MODULE_MARK')."/Upload/upload", null, true, true);
+
+            // 图片缩放计算
+            $sw = $sh = 1;
+            if ($data['vw']) {
+                $sw = $image->width()/$data['vw'];
+            }
+            if ($data['vw']) {
+                $sh = $image->height()/$data['vh'];
+            }
+
+            // 裁剪并保存
+            $image->crop($data['w']*$sw, $data['h']*$sh, $data['x']*$sh, $data['y']*$sh)->save($file);
+            $result = $this->curlUploadFile($url, $file);
+            return json_decode($result, true);
+        }
+    }
+
+    /**
      * 上传文件
      * @author jry <598821125@qq.com>
      */
-    public function upload() {
+    public function upload($files) {
+        // 获取文件信息
+        $_FILES = $files ? $files : $_FILES;
+
         // 返回标准数据
         $return = array('error' => 0, 'success' => 1);
-        $dir = I('post.dir');  // 上传类型image、flash、media、file
+        $dir = I('request.dir') ? I('request.dir') : 'image';   // 上传类型image、flash、media、file
+        if (!in_array($dir, array('image', 'flash', 'media', 'file'))) {
+            $return['error']   = 1;
+            $return['success'] = 0;
+            $return['message'] = '缺少上传参数！';
+            return $return;
+        }
 
         // 上传文件钩子，用于七牛云、又拍云等第三方文件上传的扩展
         hook('UploadFile', $dir);
 
         // 根据上传文件类型改变上传大小限制
         $upload_config = C('UPLOAD_CONFIG');
+        if ($_GET['temp'] === 'true') {
+            $upload_config['rootPath'] = './Runtime/';
+        }
         $upload_driver = C('UPLOAD_DRIVER');
         if (!$upload_driver) {
             $return['error']   = 1;
             $return['success'] = 0;
             $return['message'] = '无效的文件上传驱动';
-            return json_encode($return);
+            return $return;
         }
 
         if ($dir == 'image') {
@@ -124,11 +195,12 @@ class UploadModel extends Model {
             $return['id']   = $upload['id'];
             $return['name'] = $upload['name'];
             $return['url']  = $upload['real_path'];
+            $return['path'] = '.' . $upload['path'];
         } else {
             // 上传文件
             $upload_config['removeTrash'] = array($this, 'removeTrash');
             $upload = new Upload($upload_config, $upload_driver, C("UPLOAD_{$upload_driver}_CONFIG"));  // 实例化上传类
-            $upload->exts = $ext_arr[$dir];    // 设置附件上传允许的类型
+            $upload->exts = $ext_arr[$dir] ? $ext_arr[$dir] : $ext_arr['image'];    // 设置附件上传允许的类型，注意此处$dir为空时漏洞
             $info = $upload->uploadOne($reay_file);  // 上传文件
             if (!$info) {
                 $return['error']    = 1;
@@ -136,34 +208,52 @@ class UploadModel extends Model {
                 $return['message']  = '上传出错'.$upload->getError();
             } else {
                 // 获取上传数据
-                $upload_data['type'] = $info["type"];
-                $upload_data['name'] = $info["name"];
-                $upload_data['path'] = '/Uploads/' . $info['savepath'] . $info['savename'];
-                $upload_data['url'] = $info["url"] ? : '';
-                $upload_data['ext'] = $info["ext"];
-                $upload_data['size'] = $info["size"];
-                $upload_data['md5']  = $info['md5'];
-                $upload_data['sha1']  = $info['sha1'];
-                $upload_data['location']  = $upload_driver;
+                if ($_GET['temp'] === 'true') {
+                    $upload_data['name']  = $info["name"];
+                    $upload_data['path']  = '/Runtime/' . $info['savepath'] . $info['savename'];
+                    $upload_data['url']   = $info["url"] ? : '';
 
-                $result = $this->create($upload_data);
-                $result = $this->add($result);
-                if ($result) {
-                    if ($info["url"]) {
+                    // 返回数据
+                    if ($upload_data["url"]) {
                         $return['url'] = $upload_data['url'];
                     } else {
                         $return['url'] = __ROOT__ . $upload_data['path'];
                     }
+                    $return['path'] = '.' . $upload_data['path'];
                     $return['name'] = $upload_data['name'];
-                    $return['id'] = $result;
                 } else {
-                    $return['error']   = 1;
-                    $return['success'] = 0;
-                    $return['message'] = '上传出错'.$this->error;
+                    $upload_data['type']  = $info["type"];
+                    $upload_data['name']  = $info["name"];
+                    $upload_data['path']  = '/Uploads/' . $info['savepath'] . $info['savename'];
+                    $upload_data['url']   = $info["url"] ? : '';
+                    $upload_data['ext']   = $info["ext"];
+                    $upload_data['size']  = $info["size"];
+                    $upload_data['md5']   = $info['md5'];
+                    $upload_data['sha1']  = $info['sha1'];
+                    $upload_data['location']  = $upload_driver;
+
+                    // 返回数据
+                    $result = $this->create($upload_data);
+                    $result = $this->add($result);
+                    if ($result) {
+                        if ($info["url"]) {
+                            $return['url'] = $upload_data['url'];
+                        } else {
+                            $return['url'] = __ROOT__ . $upload_data['path'];
+                        }
+                        $return['path'] = '.' . $upload_data['path'];
+                        $return['name'] = $upload_data['name'];
+                        $return['id'] = $result;
+                    } else {
+                        $return['error']   = 1;
+                        $return['success'] = 0;
+                        $return['message'] = '上传出错'.$this->error;
+                    }
                 }
+                
             }
         }
-        return json_encode($return);
+        return $return;
     }
 
     /**

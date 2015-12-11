@@ -35,8 +35,10 @@ class MessageController extends HomeController{
         $message_object = D('User/Message');
         $message_list = $message_object->where($map)->order('sort desc,id desc')->select();
         $message_type = $message_object->message_type();
-        foreach($message_type as $key => $val){
-            $new_message_type[$key] = D('User/Message')->newMessageCount($key);
+        foreach ($message_type as $key => $val) {
+            if ($count = D('User/Message')->newMessageCount($key)) {
+                $new_message_type[$key] = $count;
+            }
         }
         $this->assign('message_list', $message_list);
         $this->assign('message_type', $message_type);

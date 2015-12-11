@@ -24,7 +24,9 @@ class Article extends TagLib {
         'new_list'      => array('attr' => 'name,doc_type,limit,order', 'close' => 1), //最新文章列表
         'slider_list'   => array('attr' => 'name,limit,order', 'close' => 1), //幻灯列表
         'notice_list'   => array('attr' => 'name,limit,order', 'close' => 1), //公告列表
-        'friendly_link' => array('attr' => 'name,type', 'close' => 1), //公告列表
+        'footnav_list' => array('attr' => 'name', 'close' => 1), //底部导航列表
+        'friendly_link' => array('attr' => 'name,type', 'close' => 1), //友情链接列表
+        'comment_list'  => array('attr' => 'name,data_id', 'close' => 1), //评论列表
     );
 
     /**
@@ -133,6 +135,21 @@ class Article extends TagLib {
     }
 
     /**
+     * 底部导航
+     * @author jry <598821125@qq.com>
+     */
+    public function _footnav_list($tag, $content){
+        $name   = $tag['name'];
+        $parse  = '<?php ';
+        $parse .= '$__FOOTNAVLIST__ = D(\'Article/Footnav\')->getTree();';
+        $parse .= ' ?>';
+        $parse .= '<volist name="__FOOTNAVLIST__" id="'. $name .'">';
+        $parse .= $content;
+        $parse .= '</volist>';
+        return $parse;
+    }
+
+    /**
      * 友情链接
      * @author jry <598821125@qq.com>
      */
@@ -146,6 +163,23 @@ class Article extends TagLib {
         $parse .= '<volist name="__LINKLIST__" id="'. $name .'">';
         $parse .= $content;
         $parse .= '</volist>';
+        return $parse;
+    }
+
+    /**
+     * 评论列表
+     * @author jry <598821125@qq.com>
+     */
+    public function _comment_list($tag, $content){
+        $name    = $tag['name'];
+        $data_id = $tag['data_id'];
+        $parse   = '<?php ';
+        $parse  .= '$map["data_id"] = array("eq", '.$data_id.');';
+        $parse  .= '$__COMMENT_LIST__ = D(\'Article/Comment\')->getCommentList($map);';
+        $parse  .= ' ?>';
+        $parse  .= '<volist name="__COMMENT_LIST__" id="'. $name .'">';
+        $parse  .= $content;
+        $parse  .= '</volist>';
         return $parse;
     }
 }

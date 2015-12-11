@@ -62,18 +62,8 @@ class ArticleModel extends Model{
      * @author jry <598821125@qq.com>
      */
     public function update() {
-        //解析数据类似复选框类型的数组型值
-        foreach($_POST as $key => $val){
-            if (is_array($val)) {
-                $_POST[$key] = implode(',', $val);
-            } else if (check_date_time($val)) {
-                $_POST[$key] = strtotime($val);
-            } else if (check_date_time($val, 'Y-m-d H:i')) {
-                $_POST[$key] = strtotime($val);
-            } else if (check_date_time($val, 'Y-m-d')) {
-                $_POST[$key] = strtotime($val);
-            }
-        }
+        // 处理数据
+        $_POST = format_data();
 
         //调用create方法构造数据
         $cid = I('post.cid');
@@ -190,24 +180,74 @@ class ArticleModel extends Model{
      */
     public function detail($id) {
         //获取基础表信息
-        $info = $this->find($id);
-        if (!(is_array($info) || 1 !== $info['status'])) {
+        $con = array();
+        $con['id'] = $id;
+        $con['status'] = array('egt', 1);  // 正常、隐藏两种状态是可以访问的
+        $info = $this->where($con)->find();
+        if (!is_array($info)) {
             $this->error = '文章被禁用或已删除！';
             return false;
         }
 
-        //根据文章模型获取扩展表的息
+        // 阅读量加1
+        $result = $this->where(array('id' => $id))->SetInc('view');
+
+        // 获取作者信息
+        $info['user'] = get_user_info($info['uid']);
+
+        // 获取发帖数量
+        $info['user']['post_count'] = $this->where(array('uid' => $info['uid']))->count();
+
+        // 获取分类及文档模型相关信息
         $category_info = D('Article/Category')->find($info['cid']);
-        $doc_type = D('Article/Type')->where(array('id' => $category_info['doc_type']))->getField('name');
-        $extend_table_object = D('Article/Article'.ucfirst($doc_type));
+        $doc_type_info = D('Article/Type')->find($category_info['doc_type']);
+        if ($doc_type_info['system']) {
+            $this->error = '文档类型错误！';
+            return false;
+        }
+        $info['category'] = $category_info;
+
+        // 根据文章模型获取扩展表的息
+        $extend_table_object = D('Article/Article'.ucfirst($doc_type_info['name']));
         $extend_data = $extend_table_object->find($id);
 
-        //基础信息与扩展信息合并
+        // 基础信息与扩展信息合并
         if (is_array($extend_data)) {
             $info = array_merge($info, $extend_data);
         }
 
-        //获取上一篇和下一篇文章信息
+        // 获取筛选字段
+        $con = array();
+        $con['id'] = array('in', $doc_type_info['filter_field']);
+        $attribute_object = D('Article/Attribute');
+        $filter_field_list = $attribute_object->where($con)->select();
+        $new_filter_field_list = array();
+        foreach ($filter_field_list as $key => $val) {
+            $val['options'] = parse_attr($val['options']);
+            $new_filter_field_list[$val['name']] = $val;
+        }
+        $info['filter_field_list'] = $new_filter_field_list;
+
+        // 给文档主要字段赋值，如：文章标题、商品名称
+        $type_main_field  = $attribute_object->getFieldById($doc_type_info['main_field'], 'name');
+        $info['main_field'] = $info[$type_main_field];
+
+        // 下载文件地址加密
+        if ($info['file']) {
+            $file_list = explode(',', $info['file']);
+            foreach ($file_list as &$file) {
+                $file = D('Home/Upload')->find($file);
+                $uid = is_login();
+                if ($uid) {
+                    $file['token'] = \Think\Crypt::encrypt($file['md5'], user_md5($uid), 3600);
+                } else {
+                    $file['token'] = 'please login';
+                }
+            }
+            $info['file_list'] = $file_list;
+        }
+
+        // 获取上一篇和下一篇文章信息
         $info['previous'] = $this->getPrevious($info);
         $info['next']     = $this->getNext($info);
         return $info;

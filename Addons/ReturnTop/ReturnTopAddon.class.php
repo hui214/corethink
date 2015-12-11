@@ -24,7 +24,7 @@ class ReturnTopAddon extends Addon{
         'status'=>1,
         'author'=>'CoreThink',
         'version'     => '1.1.0',
-        'beta'        => '3.0',
+        'beta'        => 'false',
     );
 
     /**

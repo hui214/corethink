@@ -14,20 +14,15 @@ use Think\Controller;
  */
 class UploadController extends HomeController{
     /**
-     * 初始化方法
-     * @author jry <598821125@qq.com>
-     */
-    protected function _initialize(){
-        parent::_initialize();
-        $this->is_login();
-    }
-
-    /**
      * 上传
      * @author jry <598821125@qq.com>
      */
     public function upload(){
-        exit(D('Admin/Upload')->upload());
+        if (is_login()) {
+            exit(json_encode(D('Admin/Upload')->upload()));
+        } else if(S('upload_token') && (S('upload_token') === $_SERVER['HTTP_UPLOADTOKEN'])) {
+            exit(json_encode(D('Admin/Upload')->upload()));
+        }
     }
 
     /**
@@ -57,6 +52,7 @@ class UploadController extends HomeController{
      * @author jry <598821125@qq.com>
      */
     public function fileManager($only_image = true){
+        $uid = $this->is_login();
         exit(D('Admin/cUpload')->fileManager($only_image));
     }
 }

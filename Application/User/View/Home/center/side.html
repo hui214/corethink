@@ -16,7 +16,11 @@
 
 <block name="style">
     <style type="text/css">
-        .panel-profile table.info td{
+        .panel-profile-img {
+            width: 100px;
+            height: 100px;
+        }
+        .panel-profile table.info td {
             width: 50%;
             padding: 2px;
             text-align: left;
@@ -59,7 +63,7 @@
                 </tr>
                 <tr>
                     <td class="border-none">积分：{$user_info.score}</td>
-                    <td class="border-none">余额：¥{$user_info.money} <a target="_blank" href="http://www.corethink.cn/appstore/app/detail/id/19.html">充值</a></td>
+                    <td class="border-none">余额：¥{$user_info.money} <a href="{:U('Recharge/Home/Default/index')}">充值</a></td>
                 </tr>
             </tbody>
         </table>
