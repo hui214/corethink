@@ -69,57 +69,6 @@ class InitConfigBehavior extends Behavior {
                 $system_config['TAGLIB_PRE_LOAD'] = implode(',', $system_config['TAGLIB_PRE_LOAD']);
             }
 
-            // 获取当前主题的名称
-            $current_theme = D('Admin/Theme')->where(array('current' => 1))->order('id asc')->find();
-
-            // 当前模块模版参数配置
-            $system_config['TMPL_PARSE_STRING'] = C('TMPL_PARSE_STRING');  // 先取出配置文件中定义的否则会被覆盖
-            $system_config['TMPL_PARSE_STRING']['__IMG__']  = __ROOT__.'/'.APP_PATH.MODULE_NAME.'/View/Public/img';
-            $system_config['TMPL_PARSE_STRING']['__CSS__']  = __ROOT__.'/'.APP_PATH.MODULE_NAME.'/View/Public/css';
-            $system_config['TMPL_PARSE_STRING']['__JS__']   = __ROOT__.'/'.APP_PATH.MODULE_NAME.'/View/Public/js';
-            $system_config['TMPL_PARSE_STRING']['__LIBS__'] = __ROOT__.'/'.APP_PATH.MODULE_NAME.'/View/Public/libs';
-            if ($current_theme) {
-                $current_theme['module'] = explode(',', $current_theme['module']);
-                $current_theme['module'][] = 'Home';  // 强制支持主题对Home的支持
-
-                // 一旦开启主题那么前台必须启用主题相关模版(后台无需支持主题)
-                $theme_public_path = './Theme/'.$current_theme['name'].'/Home/Public';
-                if (is_dir($theme_public_path)) {
-                    $system_config['TMPL_PARSE_STRING']['__HOME_IMG__']   = __ROOT__.'/'.$theme_public_path.'/img';
-                    $system_config['TMPL_PARSE_STRING']['__HOME_CSS__']   = __ROOT__.'/'.$theme_public_path.'/css';
-                    $system_config['TMPL_PARSE_STRING']['__HOME_JS__']    = __ROOT__.'/'.$theme_public_path.'/js';
-                    $system_config['TMPL_PARSE_STRING']['__HOME_LIBS__']  = __ROOT__.'/'.$theme_public_path.'/libs';
-                }
-
-                // 如果启用的主题配置里勾选了当前模块那么当前模块启用主题相关模版否则仍启用系统模版
-                if (in_array(MODULE_NAME, $current_theme['module'])) {
-                    $system_config['CURRENT_THEME'] = $current_theme['name'];  // 设置当前主题
-                    $theme_public_path = './Theme/'.$current_theme['name'].'/'.MODULE_NAME.'/Public';
-                    $theme_wap_path    = './Theme/'.$current_theme['name'].'/'.MODULE_NAME.'/wap';
-                    if (is_dir($theme_public_path)) {
-                        $system_config['TMPL_PARSE_STRING']['__IMG__']  = __ROOT__.'/'.$theme_public_path.'/img';
-                        $system_config['TMPL_PARSE_STRING']['__CSS__']  = __ROOT__.'/'.$theme_public_path.'/css';
-                        $system_config['TMPL_PARSE_STRING']['__JS__']   = __ROOT__.'/'.$theme_public_path.'/js';
-                        $system_config['TMPL_PARSE_STRING']['__LIBS__'] = __ROOT__.'/'.$theme_public_path.'/libs';
-                    }
-                    // 判断是否含有wap专用模版
-                    if (is_dir($theme_wap_path)) {
-                        $system_config['HAS_WAP'] = 'wap';
-                    }
-                }
-            } else {
-                // 判断是否含有wap专用模版
-                if (sizeof($controller_name) === 2) {
-                    if (is_dir(APP_PATH.MODULE_NAME.'/View/Home/wap')) {
-                        $system_config['HAS_WAP'] = 'wap';
-                    }
-                } else {
-                    if (is_dir(APP_PATH.MODULE_NAME.'/View/wap')) {
-                        $system_config['HAS_WAP'] = 'wap';
-                    }
-                }
-            }
-
             // 不直接在config里配置这些参数而要在这里配置是为了支持功能模块的相关架构
             if (MODULE_NAME === 'Admin' || $controller_name[0] === 'Admin') {
                 // Admin后台与模块后台标记
@@ -147,6 +96,58 @@ class InitConfigBehavior extends Behavior {
                 $system_config['TMPL_EXCEPTION_FILE'] = APP_PATH.'Home/View/Public/think/exception.html';  // 异常页面的模板文件
             }
 
+            // 获取当前主题的名称
+            $current_theme = D('Admin/Theme')->where(array('current' => 1))->order('id asc')->find();
+
+            // 当前模块模版参数配置
+            $system_config['TMPL_PARSE_STRING'] = C('TMPL_PARSE_STRING');  // 先取出配置文件中定义的否则会被覆盖
+            $system_config['TMPL_PARSE_STRING']['__IMG__']  = __ROOT__.'/'.APP_PATH.MODULE_NAME.'/View/Public/img';
+            $system_config['TMPL_PARSE_STRING']['__CSS__']  = __ROOT__.'/'.APP_PATH.MODULE_NAME.'/View/Public/css';
+            $system_config['TMPL_PARSE_STRING']['__JS__']   = __ROOT__.'/'.APP_PATH.MODULE_NAME.'/View/Public/js';
+            $system_config['TMPL_PARSE_STRING']['__LIBS__'] = __ROOT__.'/'.APP_PATH.MODULE_NAME.'/View/Public/libs';
+            $system_config['USER_CENTER_SIDE'] = './Application/User/View/Home/default/side.html';
+            $system_config['USER_CENTER_FORM'] = './Application/User/View/Home/builder/form.html';
+            $system_config['USER_CENTER_LIST'] = './Application/User/View/Home/builder/list.html';
+            $system_config['ADMIN_PUBLIC_LAYOUT'] = './Application/Admin/View/Public/layout.html';
+            $system_config['HOME_PUBLIC_LAYOUT']  = './Application/Home/View/Public/layout.html';
+            if ($current_theme) {
+                $current_theme['module'] = explode(',', $current_theme['module']);
+                $current_theme['module'][] = 'Home';  // 强制支持主题对Home的支持
+
+                if (in_array('User', $current_theme['module'])) {
+                    $system_config['USER_CENTER_SIDE'] = './Theme/'.$current_theme['name'].'/User/default/side.html';
+                    $system_config['USER_CENTER_FORM'] = './Theme/'.$current_theme['name'].'/User/builder/form.html';
+                    $system_config['USER_CENTER_LIST'] = './Theme/'.$current_theme['name'].'/User/builder/list.html';
+                }
+                $system_config['HOME_PUBLIC_LAYOUT']  = './Theme/'.$current_theme['name'].'/Home/Public/layout.html';
+
+                // 一旦开启主题那么前台必须启用主题相关模版(后台无需支持主题)
+                $theme_public_path = './Theme/'.$current_theme['name'].'/Home/Public';
+                if (is_dir($theme_public_path)) {
+                    $system_config['TMPL_PARSE_STRING']['__HOME_IMG__']   = __ROOT__.'/'.$theme_public_path.'/img';
+                    $system_config['TMPL_PARSE_STRING']['__HOME_CSS__']   = __ROOT__.'/'.$theme_public_path.'/css';
+                    $system_config['TMPL_PARSE_STRING']['__HOME_JS__']    = __ROOT__.'/'.$theme_public_path.'/js';
+                    $system_config['TMPL_PARSE_STRING']['__HOME_LIBS__']  = __ROOT__.'/'.$theme_public_path.'/libs';
+                }
+
+                // 如果启用的主题配置里勾选了当前模块那么当前模块启用主题相关模版
+                if (in_array(MODULE_NAME, $current_theme['module']) && $system_config['MODULE_MARK'] === 'Home') {
+                    $system_config['CURRENT_THEME'] = $current_theme['name'];  // 设置当前主题
+                    $theme_public_path = './Theme/'.$current_theme['name'].'/'.MODULE_NAME.'/Public';
+                    $theme_wap_path    = './Theme/'.$current_theme['name'].'/'.MODULE_NAME.'/wap';
+                    if (is_dir($theme_public_path)) {
+                        $system_config['TMPL_PARSE_STRING']['__IMG__']  = __ROOT__.'/'.$theme_public_path.'/img';
+                        $system_config['TMPL_PARSE_STRING']['__CSS__']  = __ROOT__.'/'.$theme_public_path.'/css';
+                        $system_config['TMPL_PARSE_STRING']['__JS__']   = __ROOT__.'/'.$theme_public_path.'/js';
+                        $system_config['TMPL_PARSE_STRING']['__LIBS__'] = __ROOT__.'/'.$theme_public_path.'/libs';
+                    }
+                    // 判断是否含有wap专用模版
+                    if (is_dir($theme_wap_path)) {
+                        $system_config['HAS_WAP'] = 'wap';
+                    }
+                }
+            }
+
             // 加载Formbuilder扩展类型
             $system_config['FORM_ITEM_TYPE'] = C('FORM_ITEM_TYPE');
             $formbuilder_extend = explode(',', D('Admin/Hook')->getFieldByName('FormBuilderExtend', 'addons'));
@@ -165,22 +166,5 @@ class InitConfigBehavior extends Behavior {
         }
 
         C($system_config);  // 添加配置
-
-        // 检测系统授权
-        if ($system_config['MODULE_MARK'] === 'Home' && (C('CT_USERNAME') !== 'trial')) {
-            $sn_decode = \Think\Crypt::decrypt(C('CT_SN'), md5(sha1(C('CT_USERNAME'))));
-            if ($sn_decode) {
-                $sn_decode = explode('[ct]', base64_decode($sn_decode));
-                $sn_decode_server = json_decode($sn_decode[0], true);
-                if (!in_array($_SERVER['SERVER_NAME'], $sn_decode_server)) {
-                    die('很抱歉，该域名未授权！请联系：<a href="http://www.corethink.cn">http://www.corethink.cn</a>');
-                }
-                if (md5(sha1(C('CT_USERNAME'))) !== $sn_decode[1]) {
-                    die('很抱歉，该帐号未授权！请联系：<a href="http://www.corethink.cn">http://www.corethink.cn</a>');
-                }
-            } else {
-                die('很抱歉，您的授权已过期！请联系：<a href="http://www.corethink.cn">http://www.corethink.cn</a>');
-            }
-        }
     }
 }

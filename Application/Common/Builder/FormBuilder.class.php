@@ -8,12 +8,12 @@
 // +----------------------------------------------------------------------
 namespace Common\Builder;
 use Think\View;
-use Think\Controller;
+use Common\Controller\CommonController;
 /**
  * 表单页面自动生成器
  * @author jry <598821125@qq.com>
  */
-class FormBuilder extends Controller {
+class FormBuilder extends CommonController {
     private $_meta_title;            // 页面标题
     private $_tab_nav = array();     // 页面Tab导航
     private $_post_url;              // 表单提交地址
@@ -142,6 +142,9 @@ class FormBuilder extends Controller {
      * @author jry <598821125@qq.com>
      */
     public function setTemplate($template) {
+        if (!C('CURRENT_THEME') && !(strstr($template, ".html"))) {
+            $template = C('MODULE_MARK').'/'.$template;
+        }
         $this->_template = $template;
         return $this;
     }

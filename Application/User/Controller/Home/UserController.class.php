@@ -66,68 +66,57 @@ class UserController extends HomeController {
             if (!in_array($reg_type, C('user_config.allow_reg_type'))) {
                 $this->error('该注册方式已关闭，请选择其它方式注册！');
             }
+            $reg_data = array();
             switch ($reg_type) {
                 case 'username': //用户名注册
-                    $username = I('post.username');
-                    $_POST['nickname'] = $username;
-
                     //图片验证码校验
                     if (!$this->check_verify(I('post.verify'))) {
                         $this->error('验证码输入错误！');
                     }
-
-                    // 构造注册数据
-                    $reg_data = array();
-                    $reg_data['user_type'] = I('post.user_type');
-                    $reg_data['nickname']  = I('post.username');
-                    $reg_data['username']  = I('post.username');
-                    $reg_data['password']  = I('post.password');
-                    $reg_data['reg_type']  = I('post.reg_type');
+                    if (I('post.email')) {
+                        $reg_data['email'] = I('post.email');
+                    }
+                    if (I('post.mobile')) {
+                        $reg_data['mobile'] = I('post.mobile');
+                    }
                     break;
                 case 'email': //邮箱注册
-                    $username = I('post.email');
-                    $_POST['username'] = 'U'.NOW_TIME;
-
                     //验证码严格加盐加密验证
-                    if (user_md5(I('post.verify'), $username) !== session('reg_verify')) {
+                    if (user_md5(I('post.verify'), I('post.email')) !== session('reg_verify')) {
                         $this->error('验证码错误！');
                     }
-
-                    // 构造注册数据
-                    $reg_data = array();
-                    $reg_data['user_type'] = I('post.user_type');
-                    $reg_data['nickname']  = I('post.username');
-                    $reg_data['username']  = I('post.username');
-                    $reg_data['password']  = I('post.password');
-                    $reg_data['email']     = I('post.email');
-                    $reg_data['reg_type']  = I('post.reg_type');
+                    $_POST['username'] = I('post.username') ? I('post.username') : 'U'.NOW_TIME;
+                    $reg_data['email'] = I('post.email');
+                    if (I('post.mobile')) {
+                        $reg_data['mobile'] = I('post.mobile');
+                    }
                     break;
                 case 'mobile': //手机号注册
-                    $username = I('post.mobile');
-                    $_POST['username'] = 'U'.NOW_TIME;
-
                     //验证码严格加盐加密验证
-                    if (user_md5(I('post.verify'), $username) !== session('reg_verify')) {
+                    if (user_md5(I('post.verify'), I('post.mobile')) !== session('reg_verify')) {
                         $this->error('验证码错误！');
                     }
-
-                    // 构造注册数据
-                    $reg_data = array();
-                    $reg_data['user_type'] = I('post.user_type');
-                    $reg_data['nickname']  = I('post.username');
-                    $reg_data['username']  = I('post.username');
-                    $reg_data['password']  = I('post.password');
-                    $reg_data['mobile']    = I('post.mobile');
-                    $reg_data['reg_type']  = I('post.reg_type');
+                    $_POST['username'] = I('post.username') ? I('post.username') : 'U'.NOW_TIME;
+                    $reg_data['mobile'] = I('post.mobile');
+                    if (I('post.email')) {
+                        $reg_data['email'] = I('post.email');
+                    }
                     break;
             }
+
+            // 构造注册数据
+            $reg_data['user_type'] = I('post.user_type') ? I('post.user_type') : 1;
+            $reg_data['nickname']  = I('post.nickname') ? I('post.nickname') : I('post.username');
+            $reg_data['username']  = I('post.username');
+            $reg_data['password']  = I('post.password');
+            $reg_data['reg_type']  = I('post.reg_type');
             $user_object = D('User/User');
             $data = $user_object->create($reg_data);
             if ($data) {
                 $id = $user_object->add($data);
                 if ($id) {
                     session('reg_verify', null);
-                    $uid = $user_object->login($username, I('post.password'));
+                    $uid = $user_object->login($data['username'], I('post.password'));
                     $this->success('注册成功', U('register2'));
                 } else {
                     $this->error('注册失败'.$user_object->getError());
@@ -242,7 +231,7 @@ class UserController extends HomeController {
             $builder->setMetaTitle('完善信息')  // 设置页面标题
                     ->setPostUrl(U(''))        // 设置表单提交地址
                     ->setExtraItems($new_attribute_list_sort)
-                    ->setTemplate('register3')
+                    ->setTemplate('user/register3')
                     ->display();
         }
     }

@@ -5,7 +5,18 @@
             <div  id="[type]{$group_k}_upload_box_{$[type]k}" class="wu-example">
                 <!--用来存放文件信息-->
                 <div id="[type]{$group_k}_upload_list_{$[type]k}" class="uploader-list col-xs-12">
-                    <ul class="list-group file-box"></ul>
+                    <ul class="list-group file-box">
+                        <notempty name="[type]form.value">
+                            <?php $files = explode(',',$[type]form['value']); ?>
+                            <foreach name="files" item="file">
+                                <li class="list-group-item file-item" data-id="{$file}">
+                                    <i class="fa fa-file"></i>
+                                    <span>{$file|get_upload_info='name'}</span>
+                                    <i class="fa fa-times-circle pull-right remove-file"></i>
+                                </li>
+                            </foreach>
+                        </notempty>
+                    </ul>
                 </div>
                 <div class="btns col-xs-12">
                     <input type="hidden" id="[type]{$group_k}_upload_input_{$[type]k}" name="{$[type]form.name}" value="{$[type]form.value}">
@@ -70,9 +81,7 @@
                     // 文件上传成功，给item添加成功class, 用样式标记上传成功。
                     uploader_[type]{$group_k}_upload_{$[type]k}.on( 'uploadSuccess', function( file , response) {
                         $( '#'+file.id ).addClass('upload-state-done');
-                        if(eval('response').status == 0){
-                            $.alertMessager(response.info);
-                        } else {
+                        if(response.status == 1){
                             $( '#'+file.id ).attr('data-id', response.id);
                             var input = $( '#[type]{$group_k}_upload_input_{$[type]k}' );
                             if (input.val()) {
@@ -80,6 +89,9 @@
                             } else {
                                 input.val(response.id);
                             }
+                        } else {
+                            $.alertMessager('错误：' + response.info);
+                            $( '#'+file.id ).remove();
                         }
                     });
 

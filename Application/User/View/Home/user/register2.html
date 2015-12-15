@@ -1,6 +1,25 @@
-<extend name="./Application/Home/View/Public/layout.html"/>
+<extend name="$_home_public_layout"/>
 
 <block name="style">
+    <style type="text/css">
+        /* 顶部导航样式 */
+        body {
+            padding: 0;
+        }
+        .login-nav {
+            height: 110px;
+            padding: 30px;
+        }
+        @media (max-width: 768px) {
+            .login-nav {
+                height: 50px;
+                padding: 8px;
+            }
+            .login-nav .logo {
+                height: 32px;
+            }
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="__CUI__/css/cui.extend.min.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/libs/jcrop/css/jquery.Jcrop.min.css">
     <style type="text/css">
@@ -37,6 +56,81 @@
             box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
         }
     </style>
+</block>
+
+<block name="header">
+    <div class="container login-nav">
+        <div class="row">
+            <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
+                <php>if(C('WEB_SITE_LOGO')):</php>
+                    <a href="{:C('HOME_PAGE')}"><img alt="logo" class="logo img-responsive" src="{$Think.config.WEB_SITE_LOGO|get_cover}"></a>
+                <php>else:</php>
+                    <a href="{:C('HOME_PAGE')}"><img alt="logo" class="logo img-responsive" src="__HOME_IMG__/logo/logo_with_title_dark.png"></a>
+                <php>endif;</php>
+            </div>
+            <div class="col-xs-7 col-sm-5 col-sm-offset-3 col-md-3 col-md-offset-6 col-lg-offset-7 text-right">
+                <span class="hidden-xs">已有账号？</span>
+                <a href="{:U('User/Home/User/login', null, true, true)}">
+                    <span class="btn btn-primary-outline"> 立即登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</block>
+
+<block name="jumbotron">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                    <div class="panel">
+                    <div class="panel-body">
+                        <h4>设置头像</h4>
+                        <form method="post" action="{:U('')}" class="avatar-form">
+                            <div class="form-group">
+                                <div id="crop-pane">
+                                    <div id="upload_list" class="uploader-list col-xs-12 img-box">
+                                        <div id="upload_preview" class="col-md-4 file-item thumbnail">
+                                            <img class="crop" src="{$user_info.avatar|get_cover='avatar'}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="preview-pane" class="hidden-xs">
+                                    <div class="preview-container">
+                                        <img class="preview" src="{$user_info.avatar|get_cover='avatar'}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="avatar[src]" id="upload-avatar-src">
+                                <input type="hidden" name="avatar[w]" id="w">
+                                <input type="hidden" name="avatar[h]" id="h">
+                                <input type="hidden" name="avatar[x]" id="x">
+                                <input type="hidden" name="avatar[y]" id="y">
+                                <input type="hidden" name="avatar[vw]" id="vw">
+                                <input type="hidden" name="avatar[vh]" id="vh">
+                                <a id="upload-avatar-button">上传头像</a>
+                                <button type="submit" class="submit btn btn-primary ajax-post hidden-xs" target-form="avatar-form">保存头像</button>
+                                <button type="submit" class="submit btn btn-primary btn-block ajax-post visible-xs" target-form="avatar-form">保存头像</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="main"></block>
+
+<block name="footer">
+    <div class="container text-center">
+        <ul class="list-inline">
+            <li><span class="copyright">{:C('WEB_SITE_COPYRIGHT')}</span></li>
+            <li><a class="icp" href="http://www.miibeian.gov.cn/" target="_blank">{:C('WEB_SITE_ICP')}</a></li>
+        </ul>
+    </div>
 </block>
 
 <block name="script">
@@ -141,62 +235,4 @@
             });
         });
     </script>
-</block>
-
-<block name="jumbotron">
-    <div class="bg-white">
-        <div class="container">
-            <ol class="breadcrumb reg-breadcrumb bg-white">
-                <li>
-                    <a href="#"><i class="fa fa-home"></i></a>
-                </li>
-                <li>
-                    <a href="#">用户注册</a>
-                </li>
-                <li class="active">第二步：设置用户头像</li>
-            </ol>
-        </div>
-    </div>
-</block>
-
-<block name="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4>设置头像</h4>
-                        <form method="post" action="{:U('')}" class="avatar-form">
-                            <div class="form-group">
-                                <div id="crop-pane">
-                                    <div id="upload_list" class="uploader-list col-xs-12 img-box">
-                                        <div id="upload_preview" class="col-md-4 file-item thumbnail">
-                                            <img class="crop" src="{$user_info.avatar|get_cover='avatar'}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="preview-pane" class="hidden-xs">
-                                    <div class="preview-container">
-                                        <img class="preview" src="{$user_info.avatar|get_cover='avatar'}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="hidden" name="avatar[src]" id="upload-avatar-src">
-                                <input type="hidden" name="avatar[w]" id="w">
-                                <input type="hidden" name="avatar[h]" id="h">
-                                <input type="hidden" name="avatar[x]" id="x">
-                                <input type="hidden" name="avatar[y]" id="y">
-                                <input type="hidden" name="avatar[vw]" id="vw">
-                                <input type="hidden" name="avatar[vh]" id="vh">
-                                <a id="upload-avatar-button">上传头像</a>
-                                <button type="submit" class="submit btn btn-primary ajax-post hidden-xs" target-form="avatar-form">保存头像</button>
-                                <button type="submit" class="submit btn btn-primary btn-block ajax-post visible-xs" target-form="avatar-form">保存头像</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </block>

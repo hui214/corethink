@@ -142,11 +142,12 @@ class UploadModel extends Model {
         $_FILES = $files ? $files : $_FILES;
 
         // 返回标准数据
-        $return = array('error' => 0, 'success' => 1);
+        $return = array('error' => 0, 'success' => 1, 'status' => 1);
         $dir = I('request.dir') ? I('request.dir') : 'image';   // 上传类型image、flash、media、file
         if (!in_array($dir, array('image', 'flash', 'media', 'file'))) {
             $return['error']   = 1;
             $return['success'] = 0;
+            $return['status']  = 0;
             $return['message'] = '缺少上传参数！';
             return $return;
         }
@@ -163,6 +164,7 @@ class UploadModel extends Model {
         if (!$upload_driver) {
             $return['error']   = 1;
             $return['success'] = 0;
+            $return['status']  = 0;
             $return['message'] = '无效的文件上传驱动';
             return $return;
         }
@@ -205,6 +207,7 @@ class UploadModel extends Model {
             if (!$info) {
                 $return['error']    = 1;
                 $return['success']  = 0;
+                $return['status']  = 0;
                 $return['message']  = '上传出错'.$upload->getError();
             } else {
                 // 获取上传数据
@@ -247,6 +250,7 @@ class UploadModel extends Model {
                     } else {
                         $return['error']   = 1;
                         $return['success'] = 0;
+                        $return['status']  = 0;
                         $return['message'] = '上传出错'.$this->error;
                     }
                 }

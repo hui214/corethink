@@ -1,239 +1,237 @@
-<extend name="./Application/Home/View/Public/layout.html"/>
+<extend name="$_home_public_layout"/>
 
 <block name="style">
     <style type="text/css">
-        .register-box {
-            float: none;
-            margin: 2% auto;
+        /* 顶部导航样式 */
+        body {
+            padding: 0;
         }
-        .register-box .panel {
-            border-color: #eee;
-            padding: 20px 20px 0px 20px;
-        }
-        .register-box .nav {
-            margin-bottom: 20px;
-        }
-        .register-box .input-group input,
-        .register-box .input-group button {
-            height: 40px;
-        }
-        .register-box .input-group-addon .fa {
-            width: 18px;
-        }
-        .register-box .verifyimg-box {
-            padding: 0px;
-        }
-        .register-box .verifyimg-box .verifyimg {
-            width: 138px;
-            height: 38px;
-            cursor: pointer;
-            border-radius: 4px;
+        .login-nav {
+            height: 110px;
+            padding: 30px;
         }
         @media (max-width: 768px) {
-            .register,
-            .register-box {
-                padding: 0;
+            .login-nav {
+                height: 50px;
+                padding: 8px;
             }
-            .register-box .panel {
-                padding: 0px;
+            .login-nav .logo {
+                height: 32px;
             }
+        }
+
+        /* 验证码样式 */
+        .verifyimg-box {
+            padding: 0px;
+        }
+        .verifyimg-box .verifyimg {
+            width: 138px;
+            height: 30px;
+            cursor: pointer;
+            border-radius: 4px;
         }
     </style>
 </block>
 
-<block name="jumbotron">
-    <div class="bg-white">
-        <div class="container">
-            <ol class="breadcrumb reg-breadcrumb bg-white">
-                <li>
-                    <a href="#"><i class="fa fa-home"></i></a>
-                </li>
-                <li>
-                    <a href="#">用户注册</a>
-                </li>
-                <li class="active">第一步：注册帐号</li>
-            </ol>
+<block name="header">
+    <div class="container login-nav">
+        <div class="row">
+            <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
+                <php>if(C('WEB_SITE_LOGO')):</php>
+                    <a href="{:C('HOME_PAGE')}"><img alt="logo" class="logo img-responsive" src="{$Think.config.WEB_SITE_LOGO|get_cover}"></a>
+                <php>else:</php>
+                    <a href="{:C('HOME_PAGE')}"><img alt="logo" class="logo img-responsive" src="__HOME_IMG__/logo/logo_with_title_dark.png"></a>
+                <php>endif;</php>
+            </div>
+            <div class="col-xs-7 col-sm-5 col-sm-offset-3 col-md-3 col-md-offset-6 col-lg-offset-7 text-right">
+                <span class="hidden-xs">已有账号？</span>
+                <a href="{:U('User/Home/User/login', null, true, true)}">
+                    <span class="btn btn-primary-outline"> 立即登录</span>
+                </a>
+            </div>
         </div>
-    </div>
+    </nav>
 </block>
 
-<block name="main">
-    <div class="container register">
-        <div class="col-xs-12 col-md-5 register-box">
-            <div class="panel panel-default">
-                <h3 class="text-center">{$meta_title}</h3>
-                <div class="panel-body">
-                    <div class="reg-box">
-                        <div class="login">
-                            <!-- 后台管理员允许注册方式才会显示 -->
-                            <php>$allow_reg_type = C('user_config.allow_reg_type');</php>
-                            <?php if(count($allow_reg_type) !== 1): ?>
-                                <ul class="nav-tabs nav">
-                                    <php>if(in_array('username', $allow_reg_type)):</php>
-                                        <li data-tab="reg1" <php>if($allow_reg_type[0] === 'username') echo 'class="active"';</php>>
-                                            <a href="#reg1" data-toggle="tab">用户名注册</a>
-                                        </li>
-                                    <php>endif;</php>
-                                    <php>if(in_array('email', $allow_reg_type)):</php>
-                                        <li data-tab="reg2" <php>if($allow_reg_type[0] === 'email') echo 'class="active"';</php>>
-                                            <a href="#reg2" data-toggle="tab">邮箱注册</a>
-                                        </li>
-                                    <php>endif;</php>
-                                    <php>if(in_array('mobile', $allow_reg_type)):</php>
-                                        <li data-tab="reg3" <php>if($allow_reg_type[0] === 'mobile') echo 'class="active"';</php>>
-                                            <a href="#reg3" data-toggle="tab">手机号注册</a>
-                                        </li>
-                                    <php>endif;</php>
-                                </ul>
-                            <?php endif; ?>
-                            <div class="tab-content">
-                                <php>if(in_array('username', $allow_reg_type)):</php>
-                                    <div id="reg1" class="tab-pane <?php if($allow_reg_type[0] === 'username') echo "active"; ?>">
-                                        <form action="__SELF__" method="post" class="form reg-form-username">
-                                            <fieldset>
-                                                <?php if(count($user_type_list) !== 1): ?>
-                                                    <div class="form-group">
-                                                        <volist name="user_type_list" id="utype">
-                                                            <label class="radio-inline">
-                                                                <input type="radio" class="radio" name="user_type" value="{$utype.id}"> {$utype.title}
-                                                            </label>
-                                                        </volist>
-                                                    </div>
-                                                <?php else: ?>
-                                                    <input type="hidden" name="user_type" value="{$user_type_list[0]['id']}">
-                                                <?php endif; ?>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                        <input type="text" class="form-control" name="username" placeholder="请输入用户名">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                                        <input type="password" class="form-control" name="password" placeholder="请输入密码">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-eye"></i></span>
-                                                        <input type="text" class="form-control" name="verify" placeholder="请输入验证码">
-                                                        <span class="input-group-addon verifyimg-box">
-                                                            <img class="verifyimg reload-verify" alt="验证码" src="{:U('verify')}" title="点击刷新">
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <span>点击下一步表示同意<a data-toggle="modal" href='#user_protocol-modal'>用户协议</a></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="hidden" name="reg_type" value="username">
-                                                    <button class="btn btn-primary btn-pill btn-block submit ajax-post" type="submit" target-form="reg-form-username">下 一 步</button>
-                                                </div>
-                                            </fieldset>
-                                        </form>
+<block name="jumbotron">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 hidden-xs">
+                    <img class="img-responsive" src="__HOME_IMG__/index/login-left.png">
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="panel panel-default">
+                        <h3 class="text-center">{$meta_title}</h3>
+                        <div class="panel-body">
+                            <div class="reg-box">
+                                <div class="login">
+                                    <!-- 后台管理员允许注册方式才会显示 -->
+                                    <php>$allow_reg_type = C('user_config.allow_reg_type');</php>
+                                    <?php if(count($allow_reg_type) !== 1): ?>
+                                        <ul class="nav-tabs nav">
+                                            <php>if(in_array('username', $allow_reg_type)):</php>
+                                                <li data-tab="reg1" <php>if($allow_reg_type[0] === 'username') echo 'class="active"';</php>>
+                                                    <a href="#reg1" data-toggle="tab">用户名注册</a>
+                                                </li>
+                                            <php>endif;</php>
+                                            <php>if(in_array('email', $allow_reg_type)):</php>
+                                                <li data-tab="reg2" <php>if($allow_reg_type[0] === 'email') echo 'class="active"';</php>>
+                                                    <a href="#reg2" data-toggle="tab">邮箱注册</a>
+                                                </li>
+                                            <php>endif;</php>
+                                            <php>if(in_array('mobile', $allow_reg_type)):</php>
+                                                <li data-tab="reg3" <php>if($allow_reg_type[0] === 'mobile') echo 'class="active"';</php>>
+                                                    <a href="#reg3" data-toggle="tab">手机号注册</a>
+                                                </li>
+                                            <php>endif;</php>
+                                        </ul>
+                                    <?php endif; ?>
+                                    <div class="form-group"></div>
+                                    <div class="tab-content">
+                                        <php>if(in_array('username', $allow_reg_type)):</php>
+                                            <div id="reg1" class="tab-pane <?php if($allow_reg_type[0] === 'username') echo "active"; ?>">
+                                                <form action="__SELF__" method="post" class="form reg-form-username">
+                                                    <fieldset>
+                                                        <?php if(count($user_type_list) !== 1): ?>
+                                                            <div class="form-group">
+                                                                <volist name="user_type_list" id="utype">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" class="radio" name="user_type" value="{$utype.id}"> {$utype.title}
+                                                                    </label>
+                                                                </volist>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <input type="hidden" name="user_type" value="{$user_type_list[0]['id']}">
+                                                        <?php endif; ?>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                                <input type="text" class="form-control" name="username" placeholder="请输入用户名">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                                <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-eye"></i></span>
+                                                                <input type="text" class="form-control" name="verify" placeholder="请输入验证码">
+                                                                <span class="input-group-addon verifyimg-box">
+                                                                    <img class="verifyimg reload-verify" alt="验证码" src="{:U('verify')}" title="点击刷新">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <span>点击下一步表示同意<a data-toggle="modal" href='#user_protocol-modal'>用户协议</a></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="reg_type" value="username">
+                                                            <button class="btn btn-primary btn-pill btn-block submit ajax-post" type="submit" target-form="reg-form-username">下 一 步</button>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        <php>endif;</php>
+                                        <php>if(in_array('email', $allow_reg_type)):</php>
+                                            <div id="reg2" class="tab-pane <?php if($allow_reg_type[0] === 'email') echo "active"; ?>">
+                                                <form action="__SELF__" method="post" class="form reg-form-email">
+                                                    <fieldset>
+                                                       <?php if(count($user_type_list) !== 1): ?>
+                                                            <div class="form-group">
+                                                                <volist name="user_type_list" id="utype">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" class="radio" name="user_type" value="{$utype.id}"> {$utype.title}
+                                                                    </label>
+                                                                </volist>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <input type="hidden" name="user_type" value="{$user_type_list[0]['id']}">
+                                                        <?php endif; ?>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                                <input type="text" class="form-control" name="email" placeholder="请输入邮箱">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-eye"></i></span>
+                                                                <input type="text" class="form-control" name="verify" placeholder="请输入验证码">
+                                                                <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-default send-mail-verify">发送邮件验证码</button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                                <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <span>点击下一步表示同意<a data-toggle="modal" href='#user_protocol-modal'>用户协议</a></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="reg_type" value="email">
+                                                            <button class="btn btn-primary btn-pill btn-block submit ajax-post" type="submit" target-form="reg-form-email">下 一 步</button>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        <php>endif;</php>
+                                        <php>if(in_array('mobile', $allow_reg_type)):</php>
+                                            <div id="reg3" class="tab-pane <?php if($allow_reg_type[0] === 'mobile') echo "active"; ?>">
+                                                <form action="__SELF__" method="post" class="form reg-form-mobile">
+                                                    <fieldset>
+                                                        <?php if(count($user_type_list) !== 1): ?>
+                                                            <div class="form-group">
+                                                                <volist name="user_type_list" id="utype">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" class="radio" name="user_type" value="{$utype.id}"> {$utype.title}
+                                                                    </label>
+                                                                </volist>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <input type="hidden" name="user_type" value="{$user_type_list[0]['id']}">
+                                                        <?php endif; ?>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                                <input type="text" class="form-control" name="mobile" placeholder="请输入手机号">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-eye"></i></span>
+                                                                <input type="text" class="form-control" name="verify" placeholder="请输入验证码">
+                                                                <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-default send-mobile-verify">发送短信验证码</button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                                <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <span>点击下一步表示同意<a data-toggle="modal" href='#user_protocol-modal'>用户协议</a></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="reg_type" value="mobile">
+                                                            <button class="btn btn-primary btn-pill btn-block submit ajax-post" type="submit" target-form="reg-form-mobile">下 一 步</button>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        <php>endif;</php>
                                     </div>
-                                <php>endif;</php>
-                                <php>if(in_array('email', $allow_reg_type)):</php>
-                                    <div id="reg2" class="tab-pane <?php if($allow_reg_type[0] === 'email') echo "active"; ?>">
-                                        <form action="__SELF__" method="post" class="form reg-form-email">
-                                            <fieldset>
-                                               <?php if(count($user_type_list) !== 1): ?>
-                                                    <div class="form-group">
-                                                        <volist name="user_type_list" id="utype">
-                                                            <label class="radio-inline">
-                                                                <input type="radio" class="radio" name="user_type" value="{$utype.id}"> {$utype.title}
-                                                            </label>
-                                                        </volist>
-                                                    </div>
-                                                <?php else: ?>
-                                                    <input type="hidden" name="user_type" value="{$user_type_list[0]['id']}">
-                                                <?php endif; ?>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                                        <input type="text" class="form-control" name="email" placeholder="请输入邮箱">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-eye"></i></span>
-                                                        <input type="text" class="form-control" name="verify" placeholder="请输入验证码">
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-default send-mail-verify">发送邮件验证码</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                                        <input type="password" class="form-control" name="password" placeholder="请输入密码">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <span>点击下一步表示同意<a data-toggle="modal" href='#user_protocol-modal'>用户协议</a></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="hidden" name="reg_type" value="email">
-                                                    <button class="btn btn-primary btn-pill btn-block submit ajax-post" type="submit" target-form="reg-form-email">下 一 步</button>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                <php>endif;</php>
-                                <php>if(in_array('mobile', $allow_reg_type)):</php>
-                                    <div id="reg3" class="tab-pane <?php if($allow_reg_type[0] === 'mobile') echo "active"; ?>">
-                                        <form action="__SELF__" method="post" class="form reg-form-mobile">
-                                            <fieldset>
-                                                <?php if(count($user_type_list) !== 1): ?>
-                                                    <div class="form-group">
-                                                        <volist name="user_type_list" id="utype">
-                                                            <label class="radio-inline">
-                                                                <input type="radio" class="radio" name="user_type" value="{$utype.id}"> {$utype.title}
-                                                            </label>
-                                                        </volist>
-                                                    </div>
-                                                <?php else: ?>
-                                                    <input type="hidden" name="user_type" value="{$user_type_list[0]['id']}">
-                                                <?php endif; ?>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                                                        <input type="text" class="form-control" name="mobile" placeholder="请输入手机号">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-eye"></i></span>
-                                                        <input type="text" class="form-control" name="verify" placeholder="请输入验证码">
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-default send-mobile-verify">发送短信验证码</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                                        <input type="password" class="form-control" name="password" placeholder="请输入密码">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <span>点击下一步表示同意<a data-toggle="modal" href='#user_protocol-modal'>用户协议</a></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="hidden" name="reg_type" value="mobile">
-                                                    <button class="btn btn-primary btn-pill btn-block submit ajax-post" type="submit" target-form="reg-form-mobile">下 一 步</button>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                <php>endif;</php>
-                            </div>
-                            <div class="form-group">
-                                {:hook('SyncLogin')} <!-- 第三方登陆钩子 -->
-                            </div>
-                            <div class="form-group text-center">
-                                <a class="text-muted" href="{:U('login')}">已有帐号，直接登录</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -241,7 +239,20 @@
             </div>
         </div>
     </div>
+</block>
 
+<block name="main"></block>
+
+<block name="footer">
+    <div class="container text-center">
+        <ul class="list-inline">
+            <li><span class="copyright">{:C('WEB_SITE_COPYRIGHT')}</span></li>
+            <li><a class="icp" href="http://www.miibeian.gov.cn/" target="_blank">{:C('WEB_SITE_ICP')}</a></li>
+        </ul>
+    </div>
+</block>
+
+<block name="main">
     <!-- 用户协议弹窗 -->
     <div class="modal fade" id="user_protocol-modal">
         <div class="modal-dialog">

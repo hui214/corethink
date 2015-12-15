@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS `ct_cms_article`;
+DROP TABLE IF EXISTS `ct_cms_attribute`;
+DROP TABLE IF EXISTS `ct_cms_default`;
+DROP TABLE IF EXISTS `ct_cms_category`;
+DROP TABLE IF EXISTS `ct_cms_type`;
+DROP TABLE IF EXISTS `ct_cms_slider`;
+DROP TABLE IF EXISTS `ct_cms_notice`;
+DROP TABLE IF EXISTS `ct_cms_footnav`;
+DROP TABLE IF EXISTS `ct_cms_friendly_link`;
+DROP TABLE IF EXISTS `ct_cms_comment`;

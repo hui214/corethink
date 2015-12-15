@@ -8,6 +8,11 @@
 // +----------------------------------------------------------------------
 
 /**
+ * Content-type设置
+ */
+header("Content-type: text/html; charset=utf-8");
+
+/**
  * PHP版本检查
  */
 if (version_compare(PHP_VERSION,'5.3.0','<')) {

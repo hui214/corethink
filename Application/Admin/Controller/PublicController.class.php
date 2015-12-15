@@ -24,7 +24,7 @@ class PublicController extends CommonController {
             $password = I('password');
 
             // 图片验证码校验
-            if (!$this->check_verify(I('post.verify')) && $_SERVER['SERVER_NAME'] !== 'localhost') {
+            if (!$this->check_verify(I('post.verify'))) {
                 $this->error('验证码输入错误！');
             }
 

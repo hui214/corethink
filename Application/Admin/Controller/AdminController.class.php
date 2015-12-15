@@ -37,7 +37,8 @@ class AdminController extends CommonController {
             }
         }
 
-        $this->assign('_user_auth', session('user_auth'));       // 用户登录信息
+        $this->assign('_user_auth', session('user_auth'));                // 用户登录信息
+        $this->assign('_admin_public_layout', C('ADMIN_PUBLIC_LAYOUT'));  // 页面公共继承模版
     }
 
     /**

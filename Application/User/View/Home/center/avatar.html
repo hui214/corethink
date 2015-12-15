@@ -1,4 +1,4 @@
-<extend name="./Application/Home/View/Public/layout.html"/>
+<extend name="$_home_public_layout"/>
 
 <block name="style">
     <link rel="stylesheet" type="text/css" href="__CUI__/css/cui.extend.min.css">
@@ -147,7 +147,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-3">
-                <include file="side" /><!-- 包含用户中心侧边导航 -->
+                <include file="$_user_center_side" /><!-- 包含用户中心侧边导航 -->
             </div>
             <div class="col-xs-12 col-md-9">
                 <div class="panel panel-default">

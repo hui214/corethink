@@ -9,7 +9,7 @@
 namespace Common\Controller;
 use Think\Controller;
 /**
- * 后台管理员登录控制器
+ * 公共控制器
  * @author jry <598821125@qq.com>
  */
 class CommonController extends Controller {
@@ -24,25 +24,36 @@ class CommonController extends Controller {
      * @param string $prefix 模板缓存前缀
      * @return void
      */
-    protected function display($template='',$charset='',$contentType='',$content='',$prefix='') {
-        if (C('CURRENT_THEME'))  {
-            $depr       =   C('TMPL_FILE_DEPR');
-            $template   =   str_replace(':', $depr, $template);
-
+    protected function display($template='', $charset='', $contentType='', $content='', $prefix='') {
+        $depr     = C('TMPL_FILE_DEPR');
+        $template = str_replace(':', $depr, $template);
+        if (C('CURRENT_THEME') && !(strstr($template, ".html"))) {
             // 分析模板文件规则
+            $controller_name = explode('/', CONTROLLER_NAME);
             if ('' == $template) {
                 // 如果模板文件名为空 按照默认规则定位
-                $template = CONTROLLER_NAME . $depr . ACTION_NAME;
-            } else if (false === strpos($template, $depr)){
+                if (sizeof($controller_name) === 2) {
+                    $template = $controller_name[1] . $depr . ACTION_NAME;
+                } else {
+                    $template = $controller_name[0] . $depr . ACTION_NAME;
+                }
+            } else if (false === strpos($template, $depr)) { // 没有/
                 $template = CONTROLLER_NAME . $depr . $template;
+                if (sizeof($controller_name) === 2) {
+                    $template = $controller_name[1] . $depr . $template;
+                } else {
+                    $template = $controller_name[0] . $depr . $template;
+                }
             }
 
-            $file = './Theme/'.C('CURRENT_THEME').$depr.MODULE_NAME.$depr.$template.C('TMPL_TEMPLATE_SUFFIX');
+            $template = './Theme/'.C('CURRENT_THEME').$depr.MODULE_NAME.$depr.$template.C('TMPL_TEMPLATE_SUFFIX');
 
-            if (is_file($file)) {
-                $template = $file;
+            if (!is_file($template)) {
+                header("Content-type: text/html; charset=utf-8");
+                echo ('模版文件' . $template . '不存在');
+                return false;
             }
         }
-        $this->view->display($template,$charset,$contentType,$content,$prefix);
+        $this->view->display($template, $charset, $contentType, $content, $prefix);
     }
 }

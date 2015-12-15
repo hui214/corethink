@@ -58,7 +58,7 @@ class CenterController extends HomeController {
                     ->setPostUrl(U(''))        // 设置表单提交地址
                     ->addFormItem('nickname', 'text', '用户昵称')
                     ->setFormData(D('User/User')->detail($uid))
-                    ->setTemplate('form')
+                    ->setTemplate(C('USER_CENTER_FORM'))
                     ->display();
         }
     }
@@ -137,7 +137,7 @@ class CenterController extends HomeController {
                     ->addFormItem('password', 'password', '旧密码')
                     ->addFormItem('newpassword', 'password', '新密码')
                     ->addFormItem('repassword', 'password', '重复新密码')
-                    ->setTemplate('form')
+                    ->setTemplate(C('USER_CENTER_FORM'))
                     ->display();
         }
     }
@@ -205,7 +205,7 @@ class CenterController extends HomeController {
             $builder->setMetaTitle('修改信息')  // 设置页面标题
                     ->setPostUrl(U(''))        // 设置表单提交地址
                     ->setExtraItems($new_attribute_list_sort)
-                    ->setTemplate('form')
+                    ->setTemplate(C('USER_CENTER_FORM'))
                     ->display();
         }
     }

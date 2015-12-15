@@ -145,6 +145,11 @@ class UserModel extends Model {
         );
         session('user_auth', $auth);
         session('user_auth_sign', $this->data_auth_sign($auth));
+
+        // 记录登录日志
+        $login_log_object = D('User/LoginLog');
+        $login_log_data   = $login_log_object->create();
+        $login_log_result = $login_log_object->add($login_log_data);
         return true;
     }
 

@@ -8,12 +8,12 @@
 // +----------------------------------------------------------------------
 namespace Common\Builder;
 use Think\View;
-use Think\Controller;
+use Common\Controller\CommonController;
 /**
  * 数据列表自动生成器
  * @author jry <598821125@qq.com>
  */
-class ListBuilder extends Controller {
+class ListBuilder extends CommonController {
     private $_meta_title;                  // 页面标题
     private $_top_button_list = array();   // 顶部工具栏按钮组
     private $_search  = array();           // 搜索参数配置
@@ -494,6 +494,9 @@ class ListBuilder extends Controller {
      * @author jry <598821125@qq.com>
      */
     public function setTemplate($template) {
+        if (!C('CURRENT_THEME') && !(strstr($template, ".html"))) {
+            $template = C('MODULE_MARK').'/'.$template;
+        }
         $this->_template = $template;
         return $this;
     }

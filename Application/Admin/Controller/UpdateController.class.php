@@ -38,6 +38,11 @@ class UpdateController extends AdminController{
             'product_name'    => C('PRODUCT_NAME'),
             'current_version' => C('CURRENT_VERSION'),
             'company_name'    => C('COMPANY_NAME'),
+            'beta_version'    => C('BETA_VERSION'),
+            'build_version'   => C('BUILD_VERSION'),
+            'product_model'   => C('PRODUCT_MODEL'),
+            'product_title'   => C('PRODUCT_TITLE'),
+            'develop_team'    => C('DEVELOP_TEAM'),
 
             //用户信息
             'data_auth_key'   => sha1(C('DATA_AUTH_KEY')),

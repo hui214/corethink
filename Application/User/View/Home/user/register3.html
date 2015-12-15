@@ -1,28 +1,70 @@
-<extend name="./Application/Home/View/Public/layout.html"/>
+<extend name="$_home_public_layout"/>
+
+<block name="style">
+    <style type="text/css">
+        /* 顶部导航样式 */
+        body {
+            padding: 0;
+        }
+        .login-nav {
+            height: 110px;
+            padding: 30px;
+        }
+        @media (max-width: 768px) {
+            .login-nav {
+                height: 50px;
+                padding: 8px;
+            }
+            .login-nav .logo {
+                height: 32px;
+            }
+        }
+    </style>
+</block>
+
+<block name="header">
+    <div class="container login-nav">
+        <div class="row">
+            <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
+                <php>if(C('WEB_SITE_LOGO')):</php>
+                    <a href="{:C('HOME_PAGE')}"><img alt="logo" class="logo img-responsive" src="{$Think.config.WEB_SITE_LOGO|get_cover}"></a>
+                <php>else:</php>
+                    <a href="{:C('HOME_PAGE')}"><img alt="logo" class="logo img-responsive" src="__HOME_IMG__/logo/logo_with_title_dark.png"></a>
+                <php>endif;</php>
+            </div>
+            <div class="col-xs-7 col-sm-5 col-sm-offset-3 col-md-3 col-md-offset-6 col-lg-offset-7 text-right">
+                <span class="hidden-xs">已有账号？</span>
+                <a href="{:U('User/Home/User/login', null, true, true)}">
+                    <span class="btn btn-primary-outline"> 立即登录</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</block>
 
 <block name="jumbotron">
-    <div class="bg-white">
+    <div class="jumbotron">
         <div class="container">
-            <ol class="breadcrumb reg-breadcrumb bg-white">
-                <li>
-                    <a href="#"><i class="fa fa-home"></i></a>
-                </li>
-                <li>
-                    <a href="#">用户注册</a>
-                </li>
-                <li class="active">第三步：完善信息</li>
-            </ol>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                    <div class="panel">
+                    <div class="panel-body">
+                       <include file="./Application/Common/Builder/formbuilder.html" />
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
     </div>
 </block>
 
-<block name="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-3"></div>
-            <div class="col-xs-12 col-sm-6">
-                <include file="./Application/Common/Builder/formbuilder.html" />
-            </div>
-        </div>
+<block name="main"></block>
+
+<block name="footer">
+    <div class="container text-center">
+        <ul class="list-inline">
+            <li><span class="copyright">{:C('WEB_SITE_COPYRIGHT')}</span></li>
+            <li><a class="icp" href="http://www.miibeian.gov.cn/" target="_blank">{:C('WEB_SITE_ICP')}</a></li>
+        </ul>
     </div>
 </block>

@@ -265,9 +265,9 @@ LOCK TABLES `ct_admin_module` WRITE;
 
 INSERT INTO `ct_admin_module` (`id`, `name`, `title`, `logo`, `icon`, `icon_color`, `description`, `developer`, `version`, `user_nav`, `config`, `admin_menu`, `is_system`, `create_time`, `update_time`, `sort`, `status`)
 VALUES
-	(1,'Admin','系统','','fa fa-cog','#3CA6F1','CoreThink核心系统','南京科斯克网络科技有限公司','1.1.0','','','{\"1\":{\"pid\":\"0\",\"title\":\"\\u7cfb\\u7edf\",\"icon\":\"fa fa-cog\",\"level\":\"system\",\"id\":\"1\"},\"2\":{\"pid\":\"1\",\"title\":\"\\u7cfb\\u7edf\\u529f\\u80fd\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"2\"},\"3\":{\"pid\":\"2\",\"title\":\"\\u7cfb\\u7edf\\u8bbe\\u7f6e\",\"icon\":\"fa fa-wrench\",\"url\":\"Admin\\/Config\\/group\",\"id\":\"3\"},\"4\":{\"pid\":\"3\",\"title\":\"\\u4fee\\u6539\\u8bbe\\u7f6e\",\"url\":\"Admin\\/Config\\/groupSave\",\"id\":\"4\"},\"5\":{\"pid\":\"2\",\"title\":\"\\u5bfc\\u822a\\u7ba1\\u7406\",\"icon\":\"fa fa-map-signs\",\"url\":\"Admin\\/Nav\\/index\",\"id\":\"5\"},\"6\":{\"pid\":\"5\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Nav\\/add\",\"id\":\"6\"},\"7\":{\"pid\":\"5\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Nav\\/edit\",\"id\":\"7\"},\"8\":{\"pid\":\"5\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Nav\\/setStatus\",\"id\":\"8\"},\"9\":{\"pid\":\"2\",\"title\":\"\\u5feb\\u6377\\u94fe\\u63a5\",\"icon\":\"fa fa-link\",\"url\":\"Admin\\/Link\\/index\",\"id\":\"9\"},\"10\":{\"pid\":\"9\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Link\\/add\",\"id\":\"10\"},\"11\":{\"pid\":\"9\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Link\\/edit\",\"id\":\"11\"},\"12\":{\"pid\":\"9\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Link\\/setStatus\",\"id\":\"12\"},\"13\":{\"pid\":\"2\",\"title\":\"\\u914d\\u7f6e\\u7ba1\\u7406\",\"icon\":\"fa fa-cogs\",\"url\":\"Admin\\/Config\\/index\",\"id\":\"13\"},\"14\":{\"pid\":\"13\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Config\\/add\",\"id\":\"14\"},\"15\":{\"pid\":\"13\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Config\\/edit\",\"id\":\"15\"},\"16\":{\"pid\":\"13\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Config\\/setStatus\",\"id\":\"16\"},\"17\":{\"pid\":\"2\",\"title\":\"\\u4e0a\\u4f20\\u7ba1\\u7406\",\"icon\":\"fa fa-upload\",\"url\":\"Admin\\/Upload\\/index\",\"id\":\"17\"},\"18\":{\"pid\":\"17\",\"title\":\"\\u4e0a\\u4f20\\u6587\\u4ef6\",\"url\":\"Admin\\/Upload\\/upload\",\"id\":\"18\"},\"19\":{\"pid\":\"17\",\"title\":\"\\u5220\\u9664\\u6587\\u4ef6\",\"url\":\"Admin\\/Upload\\/delete\",\"id\":\"19\"},\"20\":{\"pid\":\"17\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Upload\\/setStatus\",\"id\":\"20\"},\"21\":{\"pid\":\"17\",\"title\":\"\\u4e0b\\u8f7d\\u8fdc\\u7a0b\\u56fe\\u7247\",\"url\":\"Admin\\/Upload\\/downremoteimg\",\"id\":\"21\"},\"22\":{\"pid\":\"17\",\"title\":\"\\u6587\\u4ef6\\u6d4f\\u89c8\",\"url\":\"Admin\\/Upload\\/fileManager\",\"id\":\"22\"},\"23\":{\"pid\":\"1\",\"title\":\"\\u7cfb\\u7edf\\u6743\\u9650\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"23\"},\"24\":{\"pid\":\"23\",\"title\":\"\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa fa-user\",\"url\":\"Admin\\/User\\/index\",\"id\":\"24\"},\"25\":{\"pid\":\"24\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/User\\/add\",\"id\":\"25\"},\"26\":{\"pid\":\"24\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/User\\/edit\",\"id\":\"26\"},\"27\":{\"pid\":\"24\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/User\\/setStatus\",\"id\":\"27\"},\"28\":{\"pid\":\"23\",\"title\":\"\\u7ba1\\u7406\\u5458\\u7ba1\\u7406\",\"icon\":\"fa fa-lock\",\"url\":\"Admin\\/Access\\/index\",\"id\":\"28\"},\"29\":{\"pid\":\"28\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Access\\/add\",\"id\":\"29\"},\"30\":{\"pid\":\"28\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Access\\/edit\",\"id\":\"30\"},\"31\":{\"pid\":\"28\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Access\\/setStatus\",\"id\":\"31\"},\"32\":{\"pid\":\"23\",\"title\":\"\\u7528\\u6237\\u7ec4\\u7ba1\\u7406\",\"icon\":\"fa fa-sitemap\",\"url\":\"Admin\\/Group\\/index\",\"id\":\"32\"},\"33\":{\"pid\":\"32\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Group\\/add\",\"id\":\"33\"},\"34\":{\"pid\":\"32\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Group\\/edit\",\"id\":\"34\"},\"35\":{\"pid\":\"32\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Group\\/setStatus\",\"id\":\"35\"},\"36\":{\"pid\":\"1\",\"title\":\"\\u6269\\u5c55\\u4e2d\\u5fc3\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"36\"},\"37\":{\"pid\":\"36\",\"title\":\"\\u524d\\u53f0\\u4e3b\\u9898\",\"icon\":\"fa fa-adjust\",\"url\":\"Admin\\/Theme\\/index\",\"id\":\"37\"},\"38\":{\"pid\":\"37\",\"title\":\"\\u5b89\\u88c5\",\"url\":\"Admin\\/Theme\\/install\",\"id\":\"38\"},\"39\":{\"pid\":\"37\",\"title\":\"\\u5378\\u8f7d\",\"url\":\"Admin\\/Theme\\/uninstall\",\"id\":\"39\"},\"40\":{\"pid\":\"37\",\"title\":\"\\u66f4\\u65b0\\u4fe1\\u606f\",\"url\":\"Admin\\/Theme\\/updateInfo\",\"id\":\"40\"},\"41\":{\"pid\":\"37\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Theme\\/setStatus\",\"id\":\"41\"},\"42\":{\"pid\":\"37\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Theme\\/edit\",\"id\":\"42\"},\"43\":{\"pid\":\"37\",\"title\":\"\\u5207\\u6362\\u4e3b\\u9898\",\"url\":\"Admin\\/Theme\\/setCurrent\",\"id\":\"43\"},\"44\":{\"pid\":\"36\",\"title\":\"\\u529f\\u80fd\\u6a21\\u5757\",\"icon\":\"fa fa-th-large\",\"url\":\"Admin\\/Module\\/index\",\"id\":\"44\"},\"45\":{\"pid\":\"44\",\"title\":\"\\u5b89\\u88c5\",\"url\":\"Admin\\/Module\\/install\",\"id\":\"45\"},\"46\":{\"pid\":\"44\",\"title\":\"\\u5378\\u8f7d\",\"url\":\"Admin\\/Module\\/uninstall\",\"id\":\"46\"},\"47\":{\"pid\":\"44\",\"title\":\"\\u66f4\\u65b0\\u4fe1\\u606f\",\"url\":\"Admin\\/Module\\/updateInfo\",\"id\":\"47\"},\"48\":{\"pid\":\"44\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Module\\/setStatus\",\"id\":\"48\"},\"49\":{\"pid\":\"36\",\"title\":\"\\u63d2\\u4ef6\\u7ba1\\u7406\",\"icon\":\"fa fa-th\",\"url\":\"Admin\\/Addon\\/index\",\"id\":\"49\"},\"50\":{\"pid\":\"49\",\"title\":\"\\u5b89\\u88c5\",\"url\":\"Admin\\/Addon\\/install\",\"id\":\"50\"},\"51\":{\"pid\":\"49\",\"title\":\"\\u5378\\u8f7d\",\"url\":\"Admin\\/Addon\\/uninstall\",\"id\":\"51\"},\"52\":{\"pid\":\"49\",\"title\":\"\\u8fd0\\u884c\",\"url\":\"Admin\\/Addon\\/execute\",\"id\":\"52\"},\"53\":{\"pid\":\"49\",\"title\":\"\\u8bbe\\u7f6e\",\"url\":\"Admin\\/Addon\\/config\",\"id\":\"53\"},\"54\":{\"pid\":\"49\",\"title\":\"\\u540e\\u53f0\\u7ba1\\u7406\",\"url\":\"Admin\\/Addon\\/adminList\",\"id\":\"54\"},\"55\":{\"pid\":\"54\",\"title\":\"\\u65b0\\u589e\\u6570\\u636e\",\"url\":\"Admin\\/Addon\\/adminAdd\",\"id\":\"55\"},\"56\":{\"pid\":\"54\",\"title\":\"\\u7f16\\u8f91\\u6570\\u636e\",\"url\":\"Admin\\/Addon\\/adminEdit\",\"id\":\"56\"},\"57\":{\"pid\":\"54\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Addon\\/setStatus\",\"id\":\"57\"}}',1,1438651748,0,0,1),
-	(2,'Article','CMS门户','','fa fa-newspaper-o','#9933FF','CMS门户模块','南京科斯克网络科技有限公司','1.1.0','','{\"need_check\":\"0\",\"toggle_comment\":\"1\",\"group_list\":\"1:\\u9ed8\\u8ba4\",\"cate\":\"a:1\\r\\nb:1\",\"taglib\":[\"Article\"]}','{\"1\":{\"id\":\"1\",\"pid\":\"0\",\"title\":\"\\u5185\\u5bb9\",\"icon\":\"fa fa-newspaper-o\"},\"2\":{\"pid\":\"1\",\"title\":\"\\u5185\\u5bb9\\u7ba1\\u7406\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"2\"},\"3\":{\"pid\":\"2\",\"title\":\"\\u6587\\u7ae0\\u914d\\u7f6e\",\"icon\":\"fa fa-wrench\",\"url\":\"Article\\/Admin\\/Default\\/module_config\",\"id\":\"3\"},\"4\":{\"pid\":\"2\",\"title\":\"\\u6587\\u6863\\u6a21\\u578b\",\"icon\":\"fa fa-cubes\",\"url\":\"Article\\/Admin\\/Type\\/index\",\"id\":\"4\"},\"5\":{\"pid\":\"4\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Article\\/Admin\\/Type\\/add\",\"id\":\"5\"},\"6\":{\"pid\":\"4\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Article\\/Admin\\/Type\\/edit\",\"id\":\"6\"},\"7\":{\"pid\":\"4\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Article\\/Admin\\/Type\\/setStatus\",\"id\":\"7\"},\"8\":{\"pid\":\"4\",\"title\":\"\\u5b57\\u6bb5\\u7ba1\\u7406\",\"icon\":\"fa fa-database\",\"url\":\"Article\\/Admin\\/Attribute\\/index\",\"id\":\"8\"},\"9\":{\"pid\":\"8\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Article\\/Admin\\/Attribute\\/add\",\"id\":\"9\"},\"10\":{\"pid\":\"8\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Article\\/Admin\\/Attribute\\/edit\",\"id\":\"10\"},\"11\":{\"pid\":\"8\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Article\\/Admin\\/Attribute\\/setStatus\",\"id\":\"11\"},\"12\":{\"pid\":\"2\",\"title\":\"\\u680f\\u76ee\\u5206\\u7c7b\",\"icon\":\"fa fa-navicon\",\"url\":\"Article\\/Admin\\/Category\\/index\",\"id\":\"12\"},\"13\":{\"pid\":\"12\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Article\\/Admin\\/Category\\/add\",\"id\":\"13\"},\"14\":{\"pid\":\"12\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Article\\/Admin\\/Category\\/edit\",\"id\":\"14\"},\"15\":{\"pid\":\"12\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Article\\/Admin\\/Category\\/setStatus\",\"id\":\"15\"},\"16\":{\"pid\":\"2\",\"title\":\"\\u6587\\u7ae0\\u7ba1\\u7406\",\"icon\":\"fa fa-edit\",\"url\":\"Article\\/Admin\\/Article\\/index\",\"id\":\"16\"},\"17\":{\"pid\":\"2\",\"title\":\"\\u5e7b\\u706f\\u5207\\u6362\",\"icon\":\"fa fa-image\",\"url\":\"Article\\/Admin\\/Slider\\/index\",\"id\":\"17\"},\"18\":{\"pid\":\"17\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Article\\/Admin\\/Slider\\/add\",\"id\":\"18\"},\"19\":{\"pid\":\"17\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Article\\/Admin\\/Slider\\/edit\",\"id\":\"19\"},\"20\":{\"pid\":\"17\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Article\\/Admin\\/Slider\\/setStatus\",\"id\":\"20\"},\"21\":{\"pid\":\"2\",\"title\":\"\\u901a\\u77e5\\u516c\\u544a\",\"icon\":\"fa fa-bullhorn\",\"url\":\"Article\\/Admin\\/Notice\\/index\",\"id\":\"21\"},\"22\":{\"pid\":\"21\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Article\\/Admin\\/Notice\\/add\",\"id\":\"22\"},\"23\":{\"pid\":\"21\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Article\\/Admin\\/Notice\\/edit\",\"id\":\"23\"},\"24\":{\"pid\":\"21\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Article\\/Admin\\/Notice\\/setStatus\",\"id\":\"24\"},\"25\":{\"pid\":\"2\",\"title\":\"\\u5e95\\u90e8\\u5bfc\\u822a\",\"icon\":\"fa fa-map-signs\",\"url\":\"Article\\/Admin\\/Footnav\\/index\",\"id\":\"25\"},\"26\":{\"pid\":\"25\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Article\\/Admin\\/Footnav\\/add\",\"id\":\"26\"},\"27\":{\"pid\":\"25\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Article\\/Admin\\/Footnav\\/edit\",\"id\":\"27\"},\"28\":{\"pid\":\"25\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Article\\/Admin\\/Footnav\\/setStatus\",\"id\":\"28\"},\"29\":{\"pid\":\"2\",\"title\":\"\\u53cb\\u60c5\\u94fe\\u63a5\",\"icon\":\"fa fa-link\",\"url\":\"Article\\/Admin\\/FriendlyLink\\/index\",\"id\":\"29\"},\"30\":{\"pid\":\"29\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Article\\/Admin\\/FriendlyLink\\/add\",\"id\":\"30\"},\"31\":{\"pid\":\"29\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Article\\/Admin\\/FriendlyLink\\/edit\",\"id\":\"31\"},\"32\":{\"pid\":\"29\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Article\\/Admin\\/FriendlyLink\\/setStatus\",\"id\":\"32\"},\"33\":{\"pid\":\"2\",\"title\":\"\\u56de\\u6536\\u7ad9\",\"icon\":\"fa fa-recycle\",\"url\":\"Article\\/Admin\\/Article\\/recycle\",\"id\":\"33\"},\"34\":{\"pid\":\"33\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Article\\/Admin\\/Notice\\/setStatus\",\"id\":\"34\"}}',0,0,0,0,1),
-	(3,'User','用户','','fa fa-users','#F9B440','用户中心模块','南京科斯克网络科技有限公司','1.1.0','{\"center\":[{\"title\":\"\\u4fee\\u6539\\u4fe1\\u606f\",\"icon\":\"fa fa-edit\",\"url\":\"User\\/Home\\/Center\\/profile\"},{\"title\":\"\\u4fee\\u6539\\u5bc6\\u7801\",\"icon\":\"fa fa-lock\",\"url\":\"User\\/Home\\/Center\\/password\"},{\"title\":\"\\u6d88\\u606f\\u4e2d\\u5fc3\",\"icon\":\"fa fa-envelope-o\",\"url\":\"User\\/Home\\/Message\\/index\"}],\"main\":[{\"title\":\"\\u4e2a\\u4eba\\u4e2d\\u5fc3\",\"icon\":\"fa fa-tachometer\",\"url\":\"User\\/Home\\/Center\\/index\"}]}','{\"status\":\"1\",\"reg_toggle\":\"1\",\"allow_reg_type\":[\"username\"],\"deny_username\":\"\",\"user_protocol\":\"\",\"behavior\":[\"User\"]}','{\"1\":{\"pid\":\"0\",\"title\":\"\\u7528\\u6237\",\"icon\":\"fa fa-user\",\"id\":\"1\"},\"2\":{\"pid\":\"1\",\"title\":\"\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"2\"},\"3\":{\"pid\":\"2\",\"title\":\"\\u7528\\u6237\\u8bbe\\u7f6e\",\"icon\":\"fa fa-wrench\",\"url\":\"User\\/Admin\\/Default\\/module_config\",\"id\":\"3\"},\"4\":{\"pid\":\"2\",\"title\":\"\\u7528\\u6237\\u7edf\\u8ba1\",\"icon\":\"fa fa-area-chart\",\"url\":\"User\\/Admin\\/Default\\/index\",\"id\":\"4\"},\"5\":{\"pid\":\"2\",\"title\":\"\\u7528\\u6237\\u5217\\u8868\",\"icon\":\"fa fa-list\",\"url\":\"User\\/Admin\\/User\\/index\",\"id\":\"5\"},\"6\":{\"pid\":\"5\",\"title\":\"\\u65b0\\u589e\",\"url\":\"User\\/Admin\\/User\\/add\",\"id\":\"6\"},\"7\":{\"pid\":\"5\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"User\\/Admin\\/User\\/edit\",\"id\":\"7\"},\"8\":{\"pid\":\"5\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"User\\/Admin\\/User\\/setStatus\",\"id\":\"8\"}}',0,0,0,0,1);
+	(1, 'Admin', '系统', '', 'fa fa-cog', '#3CA6F1', 'CoreThink核心系统', '南京科斯克网络科技有限公司', '1.1.0', '', '', '{\"1\":{\"pid\":\"0\",\"title\":\"\\u7cfb\\u7edf\",\"icon\":\"fa fa-cog\",\"level\":\"system\",\"id\":\"1\"},\"2\":{\"pid\":\"1\",\"title\":\"\\u7cfb\\u7edf\\u529f\\u80fd\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"2\"},\"3\":{\"pid\":\"2\",\"title\":\"\\u7cfb\\u7edf\\u8bbe\\u7f6e\",\"icon\":\"fa fa-wrench\",\"url\":\"Admin\\/Config\\/group\",\"id\":\"3\"},\"4\":{\"pid\":\"3\",\"title\":\"\\u4fee\\u6539\\u8bbe\\u7f6e\",\"url\":\"Admin\\/Config\\/groupSave\",\"id\":\"4\"},\"5\":{\"pid\":\"2\",\"title\":\"\\u5bfc\\u822a\\u7ba1\\u7406\",\"icon\":\"fa fa-map-signs\",\"url\":\"Admin\\/Nav\\/index\",\"id\":\"5\"},\"6\":{\"pid\":\"5\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Nav\\/add\",\"id\":\"6\"},\"7\":{\"pid\":\"5\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Nav\\/edit\",\"id\":\"7\"},\"8\":{\"pid\":\"5\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Nav\\/setStatus\",\"id\":\"8\"},\"9\":{\"pid\":\"2\",\"title\":\"\\u5feb\\u6377\\u94fe\\u63a5\",\"icon\":\"fa fa-link\",\"url\":\"Admin\\/Link\\/index\",\"id\":\"9\"},\"10\":{\"pid\":\"9\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Link\\/add\",\"id\":\"10\"},\"11\":{\"pid\":\"9\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Link\\/edit\",\"id\":\"11\"},\"12\":{\"pid\":\"9\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Link\\/setStatus\",\"id\":\"12\"},\"13\":{\"pid\":\"2\",\"title\":\"\\u914d\\u7f6e\\u7ba1\\u7406\",\"icon\":\"fa fa-cogs\",\"url\":\"Admin\\/Config\\/index\",\"id\":\"13\"},\"14\":{\"pid\":\"13\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Config\\/add\",\"id\":\"14\"},\"15\":{\"pid\":\"13\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Config\\/edit\",\"id\":\"15\"},\"16\":{\"pid\":\"13\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Config\\/setStatus\",\"id\":\"16\"},\"17\":{\"pid\":\"2\",\"title\":\"\\u4e0a\\u4f20\\u7ba1\\u7406\",\"icon\":\"fa fa-upload\",\"url\":\"Admin\\/Upload\\/index\",\"id\":\"17\"},\"18\":{\"pid\":\"17\",\"title\":\"\\u4e0a\\u4f20\\u6587\\u4ef6\",\"url\":\"Admin\\/Upload\\/upload\",\"id\":\"18\"},\"19\":{\"pid\":\"17\",\"title\":\"\\u5220\\u9664\\u6587\\u4ef6\",\"url\":\"Admin\\/Upload\\/delete\",\"id\":\"19\"},\"20\":{\"pid\":\"17\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Upload\\/setStatus\",\"id\":\"20\"},\"21\":{\"pid\":\"17\",\"title\":\"\\u4e0b\\u8f7d\\u8fdc\\u7a0b\\u56fe\\u7247\",\"url\":\"Admin\\/Upload\\/downremoteimg\",\"id\":\"21\"},\"22\":{\"pid\":\"17\",\"title\":\"\\u6587\\u4ef6\\u6d4f\\u89c8\",\"url\":\"Admin\\/Upload\\/fileManager\",\"id\":\"22\"},\"23\":{\"pid\":\"1\",\"title\":\"\\u7cfb\\u7edf\\u6743\\u9650\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"23\"},\"24\":{\"pid\":\"23\",\"title\":\"\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa fa-user\",\"url\":\"Admin\\/User\\/index\",\"id\":\"24\"},\"25\":{\"pid\":\"24\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/User\\/add\",\"id\":\"25\"},\"26\":{\"pid\":\"24\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/User\\/edit\",\"id\":\"26\"},\"27\":{\"pid\":\"24\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/User\\/setStatus\",\"id\":\"27\"},\"28\":{\"pid\":\"23\",\"title\":\"\\u7ba1\\u7406\\u5458\\u7ba1\\u7406\",\"icon\":\"fa fa-lock\",\"url\":\"Admin\\/Access\\/index\",\"id\":\"28\"},\"29\":{\"pid\":\"28\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Access\\/add\",\"id\":\"29\"},\"30\":{\"pid\":\"28\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Access\\/edit\",\"id\":\"30\"},\"31\":{\"pid\":\"28\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Access\\/setStatus\",\"id\":\"31\"},\"32\":{\"pid\":\"23\",\"title\":\"\\u7528\\u6237\\u7ec4\\u7ba1\\u7406\",\"icon\":\"fa fa-sitemap\",\"url\":\"Admin\\/Group\\/index\",\"id\":\"32\"},\"33\":{\"pid\":\"32\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Admin\\/Group\\/add\",\"id\":\"33\"},\"34\":{\"pid\":\"32\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Group\\/edit\",\"id\":\"34\"},\"35\":{\"pid\":\"32\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Group\\/setStatus\",\"id\":\"35\"},\"36\":{\"pid\":\"1\",\"title\":\"\\u6269\\u5c55\\u4e2d\\u5fc3\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"36\"},\"37\":{\"pid\":\"36\",\"title\":\"\\u524d\\u53f0\\u4e3b\\u9898\",\"icon\":\"fa fa-adjust\",\"url\":\"Admin\\/Theme\\/index\",\"id\":\"37\"},\"38\":{\"pid\":\"37\",\"title\":\"\\u5b89\\u88c5\",\"url\":\"Admin\\/Theme\\/install\",\"id\":\"38\"},\"39\":{\"pid\":\"37\",\"title\":\"\\u5378\\u8f7d\",\"url\":\"Admin\\/Theme\\/uninstall\",\"id\":\"39\"},\"40\":{\"pid\":\"37\",\"title\":\"\\u66f4\\u65b0\\u4fe1\\u606f\",\"url\":\"Admin\\/Theme\\/updateInfo\",\"id\":\"40\"},\"41\":{\"pid\":\"37\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Theme\\/setStatus\",\"id\":\"41\"},\"42\":{\"pid\":\"37\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Admin\\/Theme\\/edit\",\"id\":\"42\"},\"43\":{\"pid\":\"37\",\"title\":\"\\u5207\\u6362\\u4e3b\\u9898\",\"url\":\"Admin\\/Theme\\/setCurrent\",\"id\":\"43\"},\"44\":{\"pid\":\"36\",\"title\":\"\\u529f\\u80fd\\u6a21\\u5757\",\"icon\":\"fa fa-th-large\",\"url\":\"Admin\\/Module\\/index\",\"id\":\"44\"},\"45\":{\"pid\":\"44\",\"title\":\"\\u5b89\\u88c5\",\"url\":\"Admin\\/Module\\/install\",\"id\":\"45\"},\"46\":{\"pid\":\"44\",\"title\":\"\\u5378\\u8f7d\",\"url\":\"Admin\\/Module\\/uninstall\",\"id\":\"46\"},\"47\":{\"pid\":\"44\",\"title\":\"\\u66f4\\u65b0\\u4fe1\\u606f\",\"url\":\"Admin\\/Module\\/updateInfo\",\"id\":\"47\"},\"48\":{\"pid\":\"44\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Module\\/setStatus\",\"id\":\"48\"},\"49\":{\"pid\":\"36\",\"title\":\"\\u63d2\\u4ef6\\u7ba1\\u7406\",\"icon\":\"fa fa-th\",\"url\":\"Admin\\/Addon\\/index\",\"id\":\"49\"},\"50\":{\"pid\":\"49\",\"title\":\"\\u5b89\\u88c5\",\"url\":\"Admin\\/Addon\\/install\",\"id\":\"50\"},\"51\":{\"pid\":\"49\",\"title\":\"\\u5378\\u8f7d\",\"url\":\"Admin\\/Addon\\/uninstall\",\"id\":\"51\"},\"52\":{\"pid\":\"49\",\"title\":\"\\u8fd0\\u884c\",\"url\":\"Admin\\/Addon\\/execute\",\"id\":\"52\"},\"53\":{\"pid\":\"49\",\"title\":\"\\u8bbe\\u7f6e\",\"url\":\"Admin\\/Addon\\/config\",\"id\":\"53\"},\"54\":{\"pid\":\"49\",\"title\":\"\\u540e\\u53f0\\u7ba1\\u7406\",\"url\":\"Admin\\/Addon\\/adminList\",\"id\":\"54\"},\"55\":{\"pid\":\"54\",\"title\":\"\\u65b0\\u589e\\u6570\\u636e\",\"url\":\"Admin\\/Addon\\/adminAdd\",\"id\":\"55\"},\"56\":{\"pid\":\"54\",\"title\":\"\\u7f16\\u8f91\\u6570\\u636e\",\"url\":\"Admin\\/Addon\\/adminEdit\",\"id\":\"56\"},\"57\":{\"pid\":\"54\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Admin\\/Addon\\/setStatus\",\"id\":\"57\"}}', 1, 1438651748, 0, 0, 1),
+	(2, 'Cms', 'CMS门户', '', 'fa fa-newspaper-o', '#9933FF', 'CMS门户模块', '南京科斯克网络科技有限公司', '1.1.0', '{\"center\":[{\"title\":\"\\u6211\\u7684\\u6587\\u7ae0\",\"icon\":\"fa fa-edit\",\"url\":\"Cms\\/Home\\/Default\\/my\"}]}', '{\"need_check\":\"0\",\"toggle_comment\":\"1\",\"group_list\":\"1:\\u9ed8\\u8ba4\",\"cate\":\"a:1\\r\\nb:1\",\"taglib\":[\"Cms\"]}', '{\"1\":{\"id\":\"1\",\"pid\":\"0\",\"title\":\"\\u5185\\u5bb9\",\"icon\":\"fa fa-newspaper-o\"},\"2\":{\"pid\":\"1\",\"title\":\"\\u5185\\u5bb9\\u7ba1\\u7406\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"2\"},\"3\":{\"pid\":\"2\",\"title\":\"\\u6587\\u7ae0\\u914d\\u7f6e\",\"icon\":\"fa fa-wrench\",\"url\":\"Cms\\/Admin\\/Default\\/module_config\",\"id\":\"3\"},\"4\":{\"pid\":\"2\",\"title\":\"\\u6587\\u6863\\u6a21\\u578b\",\"icon\":\"fa fa-th-large\",\"url\":\"Cms\\/Admin\\/Type\\/index\",\"id\":\"4\"},\"5\":{\"pid\":\"4\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Cms\\/Admin\\/Type\\/add\",\"id\":\"5\"},\"6\":{\"pid\":\"4\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Cms\\/Admin\\/Type\\/edit\",\"id\":\"6\"},\"7\":{\"pid\":\"4\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Cms\\/Admin\\/Type\\/setStatus\",\"id\":\"7\"},\"8\":{\"pid\":\"4\",\"title\":\"\\u5b57\\u6bb5\\u7ba1\\u7406\",\"icon\":\"fa fa-database\",\"url\":\"Cms\\/Admin\\/Attribute\\/index\",\"id\":\"8\"},\"9\":{\"pid\":\"8\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Cms\\/Admin\\/Attribute\\/add\",\"id\":\"9\"},\"10\":{\"pid\":\"8\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Cms\\/Admin\\/Attribute\\/edit\",\"id\":\"10\"},\"11\":{\"pid\":\"8\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Cms\\/Admin\\/Attribute\\/setStatus\",\"id\":\"11\"},\"12\":{\"pid\":\"2\",\"title\":\"\\u680f\\u76ee\\u5206\\u7c7b\",\"icon\":\"fa fa-navicon\",\"url\":\"Cms\\/Admin\\/Category\\/index\",\"id\":\"12\"},\"13\":{\"pid\":\"12\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Cms\\/Admin\\/Category\\/add\",\"id\":\"13\"},\"14\":{\"pid\":\"12\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Cms\\/Admin\\/Category\\/edit\",\"id\":\"14\"},\"15\":{\"pid\":\"12\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Cms\\/Admin\\/Category\\/setStatus\",\"id\":\"15\"},\"16\":{\"pid\":\"2\",\"title\":\"\\u6587\\u7ae0\\u7ba1\\u7406\",\"icon\":\"fa fa-edit\",\"url\":\"Cms\\/Admin\\/Default\\/index\",\"id\":\"16\"},\"17\":{\"pid\":\"2\",\"title\":\"\\u5e7b\\u706f\\u5207\\u6362\",\"icon\":\"fa fa-image\",\"url\":\"Cms\\/Admin\\/Slider\\/index\",\"id\":\"17\"},\"18\":{\"pid\":\"17\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Cms\\/Admin\\/Slider\\/add\",\"id\":\"18\"},\"19\":{\"pid\":\"17\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Cms\\/Admin\\/Slider\\/edit\",\"id\":\"19\"},\"20\":{\"pid\":\"17\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Cms\\/Admin\\/Slider\\/setStatus\",\"id\":\"20\"},\"21\":{\"pid\":\"2\",\"title\":\"\\u901a\\u77e5\\u516c\\u544a\",\"icon\":\"fa fa-bullhorn\",\"url\":\"Cms\\/Admin\\/Notice\\/index\",\"id\":\"21\"},\"22\":{\"pid\":\"21\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Cms\\/Admin\\/Notice\\/add\",\"id\":\"22\"},\"23\":{\"pid\":\"21\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Cms\\/Admin\\/Notice\\/edit\",\"id\":\"23\"},\"24\":{\"pid\":\"21\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Cms\\/Admin\\/Notice\\/setStatus\",\"id\":\"24\"},\"25\":{\"pid\":\"2\",\"title\":\"\\u5e95\\u90e8\\u5bfc\\u822a\",\"icon\":\"fa fa-map-signs\",\"url\":\"Cms\\/Admin\\/Footnav\\/index\",\"id\":\"25\"},\"26\":{\"pid\":\"25\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Cms\\/Admin\\/Footnav\\/add\",\"id\":\"26\"},\"27\":{\"pid\":\"25\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Cms\\/Admin\\/Footnav\\/edit\",\"id\":\"27\"},\"28\":{\"pid\":\"25\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Cms\\/Admin\\/Footnav\\/setStatus\",\"id\":\"28\"},\"29\":{\"pid\":\"2\",\"title\":\"\\u53cb\\u60c5\\u94fe\\u63a5\",\"icon\":\"fa fa-link\",\"url\":\"Cms\\/Admin\\/FriendlyLink\\/index\",\"id\":\"29\"},\"30\":{\"pid\":\"29\",\"title\":\"\\u65b0\\u589e\",\"url\":\"Cms\\/Admin\\/FriendlyLink\\/add\",\"id\":\"30\"},\"31\":{\"pid\":\"29\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"Cms\\/Admin\\/FriendlyLink\\/edit\",\"id\":\"31\"},\"32\":{\"pid\":\"29\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Cms\\/Admin\\/FriendlyLink\\/setStatus\",\"id\":\"32\"},\"33\":{\"pid\":\"2\",\"title\":\"\\u56de\\u6536\\u7ad9\",\"icon\":\"fa fa-recycle\",\"url\":\"Cms\\/Admin\\/Default\\/recycle\",\"id\":\"33\"},\"34\":{\"pid\":\"33\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"Cms\\/Admin\\/Notice\\/setStatus\",\"id\":\"34\"}}', 0, 0, 0, 0, 1),
+	(3, 'User', '用户', '', 'fa fa-users', '#F9B440', '用户中心模块', '南京科斯克网络科技有限公司', '1.1.0', '{\"center\":[{\"title\":\"\\u4fee\\u6539\\u4fe1\\u606f\",\"icon\":\"fa fa-edit\",\"url\":\"User\\/Home\\/Center\\/profile\"},{\"title\":\"\\u4fee\\u6539\\u5bc6\\u7801\",\"icon\":\"fa fa-lock\",\"url\":\"User\\/Home\\/Center\\/password\"},{\"title\":\"\\u6d88\\u606f\\u4e2d\\u5fc3\",\"icon\":\"fa fa-envelope-o\",\"url\":\"User\\/Home\\/Message\\/index\"}],\"main\":[{\"title\":\"\\u4e2a\\u4eba\\u4e2d\\u5fc3\",\"icon\":\"fa fa-tachometer\",\"url\":\"User\\/Home\\/Center\\/index\"}]}', '{\"status\":\"1\",\"reg_toggle\":\"1\",\"allow_reg_type\":[\"username\"],\"deny_username\":\"\",\"user_protocol\":\"\",\"behavior\":[\"User\"]}', '{\"1\":{\"pid\":\"0\",\"title\":\"\\u7528\\u6237\",\"icon\":\"fa fa-user\",\"id\":\"1\"},\"2\":{\"pid\":\"1\",\"title\":\"\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa fa-folder-open-o\",\"id\":\"2\"},\"3\":{\"pid\":\"2\",\"title\":\"\\u7528\\u6237\\u8bbe\\u7f6e\",\"icon\":\"fa fa-wrench\",\"url\":\"User\\/Admin\\/Default\\/module_config\",\"id\":\"3\"},\"4\":{\"pid\":\"2\",\"title\":\"\\u7528\\u6237\\u7edf\\u8ba1\",\"icon\":\"fa fa-area-chart\",\"url\":\"User\\/Admin\\/Default\\/index\",\"id\":\"4\"},\"5\":{\"pid\":\"2\",\"title\":\"\\u7528\\u6237\\u5217\\u8868\",\"icon\":\"fa fa-list\",\"url\":\"User\\/Admin\\/User\\/index\",\"id\":\"5\"},\"6\":{\"pid\":\"5\",\"title\":\"\\u65b0\\u589e\",\"url\":\"User\\/Admin\\/User\\/add\",\"id\":\"6\"},\"7\":{\"pid\":\"5\",\"title\":\"\\u7f16\\u8f91\",\"url\":\"User\\/Admin\\/User\\/edit\",\"id\":\"7\"},\"8\":{\"pid\":\"5\",\"title\":\"\\u8bbe\\u7f6e\\u72b6\\u6001\",\"url\":\"User\\/Admin\\/User\\/setStatus\",\"id\":\"8\"}}', 0, 0, 0, 0, 1);
 
 /*!40000 ALTER TABLE `ct_admin_module` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -300,7 +300,7 @@ LOCK TABLES `ct_admin_nav` WRITE;
 INSERT INTO `ct_admin_nav` (`id`, `pid`, `name`, `title`, `type`, `value`, `target`, `icon`, `create_time`, `update_time`, `sort`, `status`)
 VALUES
 	(1,0,'home','首页','link','','','fa fa-archive',1441293186,1441297331,0,1),
-	(2,0,'article','CMS门户','module','Article','','fa fa-newspaper-o',1449837766,1449837766,0,1),
+	(2,0,'cms','CMS门户','module','Cms','','fa fa-newspaper-o',1449837766,1449837766,0,1),
 	(3,0,'user','用户','module','User','','fa fa-users',1449837769,1449837769,0,1);
 
 /*!40000 ALTER TABLE `ct_admin_nav` ENABLE KEYS */;
@@ -402,12 +402,12 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table ct_article_article
+# Dump of table ct_cms_article
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `ct_article_article`;
+DROP TABLE IF EXISTS `ct_cms_article`;
 
-CREATE TABLE `ct_article_article` (
+CREATE TABLE `ct_cms_article` (
   `id` int(11) unsigned NOT NULL COMMENT '文档ID',
   `title` varchar(127) NOT NULL DEFAULT '' COMMENT '标题',
   `abstract` varchar(255) NOT NULL DEFAULT '' COMMENT '简介',
@@ -418,10 +418,10 @@ CREATE TABLE `ct_article_article` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章类型扩展表';
 
-LOCK TABLES `ct_article_article` WRITE;
-/*!40000 ALTER TABLE `ct_article_article` DISABLE KEYS */;
+LOCK TABLES `ct_cms_article` WRITE;
+/*!40000 ALTER TABLE `ct_cms_article` DISABLE KEYS */;
 
-INSERT INTO `ct_article_article` (`id`, `title`, `abstract`, `content`, `tags`, `cover`, `file`)
+INSERT INTO `ct_cms_article` (`id`, `title`, `abstract`, `content`, `tags`, `cover`, `file`)
 VALUES
 	(1,'CoreThink v1.1正式版发布！','CoreThink是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。','                <span style=\"color:#777777;\">CoreThink是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。</span>            ','',1,0),
 	(2,'CoreThink v1.1正式版发布！','CoreThink是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。','                <span style=\"color:#777777;\">CoreThink是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。</span>            ','',1,0),
@@ -432,16 +432,16 @@ VALUES
 	(7,'CoreThink v1.1正式版发布！','CoreThink是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。','                <span style=\"color:#777777;\">CoreThink是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。</span>            ','',1,0),
 	(8,'CoreThink v1.1正式版发布！','CoreThink是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。','                <span style=\"color:#777777;\">CoreThink是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。</span>            ','',1,0);
 
-/*!40000 ALTER TABLE `ct_article_article` ENABLE KEYS */;
+/*!40000 ALTER TABLE `ct_cms_article` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table ct_article_attribute
+# Dump of table ct_cms_attribute
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `ct_article_attribute`;
+DROP TABLE IF EXISTS `ct_cms_attribute`;
 
-CREATE TABLE `ct_article_attribute` (
+CREATE TABLE `ct_cms_attribute` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL DEFAULT '' COMMENT '字段名',
   `title` varchar(100) NOT NULL DEFAULT '' COMMENT '字段标题',
@@ -459,10 +459,10 @@ CREATE TABLE `ct_article_attribute` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文档属性字段表';
 
-LOCK TABLES `ct_article_attribute` WRITE;
-/*!40000 ALTER TABLE `ct_article_attribute` DISABLE KEYS */;
+LOCK TABLES `ct_cms_attribute` WRITE;
+/*!40000 ALTER TABLE `ct_cms_attribute` DISABLE KEYS */;
 
-INSERT INTO `ct_article_attribute` (`id`, `name`, `title`, `field`, `type`, `value`, `tip`, `show`, `options`, `doc_type`, `create_time`, `update_time`, `sort`, `status`)
+INSERT INTO `ct_cms_attribute` (`id`, `name`, `title`, `field`, `type`, `value`, `tip`, `show`, `options`, `doc_type`, `create_time`, `update_time`, `sort`, `status`)
 VALUES
 	(1,'cid','分类','int(11) unsigned NOT NULL ','select','0','所属分类',1,'',0,1383891233,1384508336,0,1),
 	(2,'uid','用户ID','int(11) unsigned NOT NULL ','num','0','用户ID',0,'',0,1383891233,1384508336,0,1),
@@ -481,16 +481,16 @@ VALUES
 	(15,'cover','封面','int(11) unsigned NOT NULL ','picture','0','文档封面',1,'',3,1383891233,1384508496,0,1),
 	(16,'file','附件','int(11) unsigned NOT NULL ','file','0','附件',1,'',3,1439454552,1439454552,0,1);
 
-/*!40000 ALTER TABLE `ct_article_attribute` ENABLE KEYS */;
+/*!40000 ALTER TABLE `ct_cms_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table ct_article_base
+# Dump of table ct_cms_default
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `ct_article_base`;
+DROP TABLE IF EXISTS `ct_cms_default`;
 
-CREATE TABLE `ct_article_base` (
+CREATE TABLE `ct_cms_default` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '文档ID',
   `cid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '分类ID',
   `doc_type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '文档类型ID',
@@ -507,10 +507,10 @@ CREATE TABLE `ct_article_base` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文档类型基础表';
 
-LOCK TABLES `ct_article_base` WRITE;
-/*!40000 ALTER TABLE `ct_article_base` DISABLE KEYS */;
+LOCK TABLES `ct_cms_default` WRITE;
+/*!40000 ALTER TABLE `ct_cms_default` DISABLE KEYS */;
 
-INSERT INTO `ct_article_base` (`id`, `cid`, `doc_type`, `uid`, `view`, `comment`, `good`, `bad`, `mark`, `create_time`, `update_time`, `sort`, `status`)
+INSERT INTO `ct_cms_default` (`id`, `cid`, `doc_type`, `uid`, `view`, `comment`, `good`, `bad`, `mark`, `create_time`, `update_time`, `sort`, `status`)
 VALUES
 	(1,1,3,1,0,0,0,0,0,1449839213,1449839263,0,1),
 	(2,1,3,1,0,0,0,0,0,1449839213,1449839263,0,1),
@@ -521,16 +521,16 @@ VALUES
 	(7,1,3,1,0,0,0,0,0,1449839213,1449839263,0,1),
 	(8,1,3,1,0,0,0,0,0,1449839213,1449839263,0,1);
 
-/*!40000 ALTER TABLE `ct_article_base` ENABLE KEYS */;
+/*!40000 ALTER TABLE `ct_cms_default` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table ct_article_category
+# Dump of table ct_cms_category
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `ct_article_category`;
+DROP TABLE IF EXISTS `ct_cms_category`;
 
-CREATE TABLE `ct_article_category` (
+CREATE TABLE `ct_cms_category` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '分类ID',
   `pid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '父分类ID',
   `group` tinyint(4) NOT NULL DEFAULT '0' COMMENT '分组',
@@ -549,10 +549,10 @@ CREATE TABLE `ct_article_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目分类表';
 
-LOCK TABLES `ct_article_category` WRITE;
-/*!40000 ALTER TABLE `ct_article_category` DISABLE KEYS */;
+LOCK TABLES `ct_cms_category` WRITE;
+/*!40000 ALTER TABLE `ct_cms_category` DISABLE KEYS */;
 
-INSERT INTO `ct_article_category` (`id`, `pid`, `group`, `doc_type`, `title`, `url`, `content`, `index_template`, `detail_template`, `post_auth`, `icon`, `create_time`, `update_time`, `sort`, `status`)
+INSERT INTO `ct_cms_category` (`id`, `pid`, `group`, `doc_type`, `title`, `url`, `content`, `index_template`, `detail_template`, `post_auth`, `icon`, `create_time`, `update_time`, `sort`, `status`)
 VALUES
 	(1,0,1,3,'产品中心','','','','',1,'fa fa-send-o',1431926468,1446449005,0,1),
 	(2,0,1,3,'新闻动态','','','','',1,'fa-search',1446449071,1446449394,0,1),
@@ -561,16 +561,16 @@ VALUES
 	(5,0,1,3,'品牌专区','','','','',1,'fa-arrows',1446449686,1446449686,0,1),
 	(6,0,1,3,'联系我们','','','','',1,'fa-envelope-o',1446449697,1446449697,0,1);
 
-/*!40000 ALTER TABLE `ct_article_category` ENABLE KEYS */;
+/*!40000 ALTER TABLE `ct_cms_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table ct_article_footnav
+# Dump of table ct_cms_footnav
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `ct_article_footnav`;
+DROP TABLE IF EXISTS `ct_cms_footnav`;
 
-CREATE TABLE `ct_article_footnav` (
+CREATE TABLE `ct_cms_footnav` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `pid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '上级',
   `title` varchar(31) NOT NULL DEFAULT '' COMMENT '标题',
@@ -583,10 +583,10 @@ CREATE TABLE `ct_article_footnav` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='底部导航链接表';
 
-LOCK TABLES `ct_article_footnav` WRITE;
-/*!40000 ALTER TABLE `ct_article_footnav` DISABLE KEYS */;
+LOCK TABLES `ct_cms_footnav` WRITE;
+/*!40000 ALTER TABLE `ct_cms_footnav` DISABLE KEYS */;
 
-INSERT INTO `ct_article_footnav` (`id`, `pid`, `title`, `url`, `icon`, `create_time`, `update_time`, `sort`, `status`)
+INSERT INTO `ct_cms_footnav` (`id`, `pid`, `title`, `url`, `icon`, `create_time`, `update_time`, `sort`, `status`)
 VALUES
 	(1,0,'关于','','',1449742225,1449742255,0,1),
 	(2,1,'关于我们','http://www.corethink.cn/article/category/detail/id/8.html','',1449742312,1449742312,0,1),
@@ -605,16 +605,16 @@ VALUES
 	(15,14,'开发手册','http://www.corethink.cn/manual/doc/corethink1_1.html','',1449742825,1449742825,0,1),
 	(16,14,'ThinkPHP手册','http://document.thinkphp.cn/manual_3_2.html','',1449742836,1449742856,0,1);
 
-/*!40000 ALTER TABLE `ct_article_footnav` ENABLE KEYS */;
+/*!40000 ALTER TABLE `ct_cms_footnav` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table ct_article_friendly_link
+# Dump of table ct_cms_friendly_link
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `ct_article_friendly_link`;
+DROP TABLE IF EXISTS `ct_cms_friendly_link`;
 
-CREATE TABLE `ct_article_friendly_link` (
+CREATE TABLE `ct_cms_friendly_link` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
   `logo` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'logo',
@@ -627,10 +627,10 @@ CREATE TABLE `ct_article_friendly_link` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接表';
 
-LOCK TABLES `ct_article_friendly_link` WRITE;
-/*!40000 ALTER TABLE `ct_article_friendly_link` DISABLE KEYS */;
+LOCK TABLES `ct_cms_friendly_link` WRITE;
+/*!40000 ALTER TABLE `ct_cms_friendly_link` DISABLE KEYS */;
 
-INSERT INTO `ct_article_friendly_link` (`id`, `title`, `logo`, `url`, `type`, `create_time`, `update_timeCopy`, `sort`, `status`)
+INSERT INTO `ct_cms_friendly_link` (`id`, `title`, `logo`, `url`, `type`, `create_time`, `update_timeCopy`, `sort`, `status`)
 VALUES
 	(1,'CoreThink',1,'http://www.corethink.cn',1,1446449071,1446449071,0,1),
 	(2,'CoreThink',1,'http://www.corethink.cn',1,1446449071,1446449071,0,1),
@@ -645,16 +645,16 @@ VALUES
 	(11,'CoreThink',1,'http://www.corethink.cn',2,1446449071,1446449071,0,1),
 	(12,'CoreThink',1,'http://www.corethink.cn',2,1446449071,1446449071,0,1);
 
-/*!40000 ALTER TABLE `ct_article_friendly_link` ENABLE KEYS */;
+/*!40000 ALTER TABLE `ct_cms_friendly_link` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table ct_article_notice
+# Dump of table ct_cms_notice
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `ct_article_notice`;
+DROP TABLE IF EXISTS `ct_cms_notice`;
 
-CREATE TABLE `ct_article_notice` (
+CREATE TABLE `ct_cms_notice` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '幻灯ID',
   `title` char(80) NOT NULL DEFAULT '' COMMENT '标题',
   `content` text NOT NULL COMMENT '内容',
@@ -667,12 +667,12 @@ CREATE TABLE `ct_article_notice` (
 
 
 
-# Dump of table ct_article_slider
+# Dump of table ct_cms_slider
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `ct_article_slider`;
+DROP TABLE IF EXISTS `ct_cms_slider`;
 
-CREATE TABLE `ct_article_slider` (
+CREATE TABLE `ct_cms_slider` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '幻灯ID',
   `title` char(80) NOT NULL DEFAULT '' COMMENT '标题',
   `cover` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '封面ID',
@@ -686,12 +686,12 @@ CREATE TABLE `ct_article_slider` (
 
 
 
-# Dump of table ct_article_type
+# Dump of table ct_cms_type
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `ct_article_type`;
+DROP TABLE IF EXISTS `ct_cms_type`;
 
-CREATE TABLE `ct_article_type` (
+CREATE TABLE `ct_cms_type` (
   `id` tinyint(4) unsigned NOT NULL AUTO_INCREMENT COMMENT '模型ID',
   `name` char(16) NOT NULL DEFAULT '' COMMENT '模型名称',
   `title` char(16) NOT NULL DEFAULT '' COMMENT '模型标题',
@@ -709,16 +709,16 @@ CREATE TABLE `ct_article_type` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文档模型表';
 
-LOCK TABLES `ct_article_type` WRITE;
-/*!40000 ALTER TABLE `ct_article_type` DISABLE KEYS */;
+LOCK TABLES `ct_cms_type` WRITE;
+/*!40000 ALTER TABLE `ct_cms_type` DISABLE KEYS */;
 
-INSERT INTO `ct_article_type` (`id`, `name`, `title`, `icon`, `main_field`, `list_field`, `filter_field`, `field_sort`, `field_group`, `system`, `create_time`, `update_time`, `sort`, `status`)
+INSERT INTO `ct_cms_type` (`id`, `name`, `title`, `icon`, `main_field`, `list_field`, `filter_field`, `field_sort`, `field_group`, `system`, `create_time`, `update_time`, `sort`, `status`)
 VALUES
 	(1,'link','链接','fa fa-link',0,'','','','',1,1426580628,1426580628,0,1),
 	(2,'page','单页','fa fa-file-text',0,'','','','',1,1426580628,1426580628,0,1),
 	(3,'article','文章','fa fa-file-word-o',11,'11','','{\"1\":[\"1\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\"],\"2\":[\"9\",\"7\"]}','1:基础\n2:扩展',0,1426580628,1426580628,0,1);
 
-/*!40000 ALTER TABLE `ct_article_type` ENABLE KEYS */;
+/*!40000 ALTER TABLE `ct_cms_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
