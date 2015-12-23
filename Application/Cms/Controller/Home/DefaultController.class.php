@@ -106,7 +106,7 @@ class DefaultController extends HomeController {
                 // 获取文档列表
                 $map['status'] = array('eq', 1);
                 $base_table   = C('DB_PREFIX').D('Default')->tableName;
-                $extend_table = C('DB_PREFIX').D('Default')->moduleName.'_'.strtolower($doc_type_info['name']);
+                $extend_table = strtolower(C('DB_PREFIX').D('Default')->moduleName.'_'.$doc_type_info['name']);
                 $document_list = D('Default')
                                ->page(!empty($_GET["p"])?$_GET["p"]:1, C('ADMIN_PAGE_ROWS'))
                                ->order('sort desc,'.$base_table.'.id desc')

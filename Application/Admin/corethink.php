@@ -17,7 +17,7 @@ return array(
         'description' => 'CoreThink核心系统',
         'developer'   => '南京科斯克网络科技有限公司',
         'website'     => 'http://www.corethink.cn',
-        'version'     => '1.1.0',
+        'version'     => '1.1.1',
         'beta'        => 'false',
     ),
 

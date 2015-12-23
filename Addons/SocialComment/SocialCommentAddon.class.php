@@ -23,7 +23,7 @@ class SocialCommentAddon extends Addon {
         'description' => '集成了各种社交化评论插件，轻松集成到系统中。',
         'status'      => 1,
         'author'      => 'CoreThink',
-        'version'     => '1.1.0',
+        'version'     => '1.1.1',
         'beta'        => 'false',
     );
 

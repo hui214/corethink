@@ -23,7 +23,7 @@ class ReturnTopAddon extends Addon{
         'description'=>'返回顶部',
         'status'=>1,
         'author'=>'CoreThink',
-        'version'     => '1.1.0',
+        'version'     => '1.1.1',
         'beta'        => 'false',
     );
 

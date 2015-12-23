@@ -22,9 +22,9 @@ $_config = array(
      */
 
     'PRODUCT_NAME'    => 'CoreThink',                  // 产品名称
-    'CURRENT_VERSION' => '1.1.0',                      // 当前版本
+    'CURRENT_VERSION' => '1.1.1',                      // 当前版本
     'BETA_VERSION'    => 'flase',                      // 测试版本 flase表示正式版本
-    'BUILD_VERSION'   => '201512111938',               // 编译标记
+    'BUILD_VERSION'   => '201512231550',               // 编译标记
     'PRODUCT_MODEL'   => 'c3',                         // 产品型号
     'PRODUCT_TITLE'   => '个人版',                      // 产品标题
     'WEBSITE_DOMAIN'  => 'http://www.corethink.cn',    // 官方网址

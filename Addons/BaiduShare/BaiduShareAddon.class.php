@@ -23,7 +23,7 @@ class BaiduShareAddon extends Addon {
         'description' => '用户将网站内容分享到第三方网站',
         'status'      => 1,
         'author'      => 'CoreThink',
-        'version'     => '1.1.0',
+        'version'     => '1.1.1',
         'beta'        => 'false',
     );
 
