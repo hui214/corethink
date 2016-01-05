@@ -190,7 +190,7 @@ class DocumentModel extends Model{
         if ($previous) {
             $type = D('DocumentType')->find($previous['doc_type']);
             $main_field_name = D('DocumentAttribute')->getFieldById($type['main_field'], 'name');
-            $previous['title'] = D('Document'.ucfirst($type['name']))->getFieldById($next['id'], $main_field_name);
+            $previous['title'] = D('Document'.ucfirst($type['name']))->getFieldById($previous['id'], $main_field_name);
         }
 
         if(!$previous){
